@@ -1,0 +1,158 @@
+body
+{
+    font-size:16px;
+    color : black;
+    background-color: white;
+    font-family: 'Oxygen',sans-serif;
+    box-sizing: border-box;
+}
+
+.navbar
+{
+    background-color: whitesmoke;
+    margin-bottom: 20px;
+}
+
+#logo-img
+{
+    background-image: url('../image/alrim-logo.jpg');
+    width:150px;
+    height: 150px;
+    margin-right:15px;
+    margin-top:15px
+}
+.navbar-brand h1
+{
+    font-family: 'Oxygen', sans-serif;
+    color :black;
+    font-size: 3.5em;
+    font-weight: bold;
+    margin-bottom:15px;
+}
+.navbar-brand p
+{
+    font-size: 0.8em;
+ 
+}
+.navbar-brand a:hover, .navbar-brand a:focus
+{
+    text-decoration: none;
+
+}
+#icons, #icons a
+{
+    text-align: center;
+    color : black;
+}
+#icons :hover
+{
+    text-decoration: none;
+    color: gray;
+}
+#awards
+{
+    margin-right:30px;
+
+}
+
+#main-content .img-content
+{
+    margin-bottom: 20px;
+    margin-right: 40px;
+    margin-left: auto;
+}
+
+
+
+
+
+
+
+@media (min-width: 1200px) {
+  
+  }
+  
+  /********** Medium devices only **********/
+  @media (min-width: 992px) and (max-width: 1199px) {
+
+  }
+  
+  /********** Small devices only **********/
+  @media (min-width: 768px) and (max-width: 991px) {
+    #logo-img
+    {
+        background-image: url('../image/alrim-logo.jpg');
+        width:100px;
+        height: 100px;
+        margin-right:15px;
+        margin-top:15px
+    }
+    .navbar-brand h1
+    {
+        margin-bottom: 5px;
+    }
+    .navbar-brand p
+    {
+        font-size: 0.7em;
+     
+    }
+    #icons, #icons a
+    {
+      display: none;
+    }
+ 
+
+  }
+  
+  /********** Extra small devices only **********/
+  @media (max-width: 767px) {
+    #logo-img
+    {
+        background-image: url('../image/alrim-logo.jpg');
+        width:100px;
+        height: 100px;
+        margin-right:15px;
+        margin-top:15px;
+        
+    }
+    .navbar-brand h1
+    {
+        margin-bottom: 5px;
+    }
+    .navbar-brand p
+    {
+        font-size: 0.6em;
+     
+    }
+    #icons, #icons a
+    {
+      display: none;
+    }
+ 
+    
+  
+  
+  }
+  
+  
+  /********** Super extra small devices Only :-) (e.g., iPhone 4) **********/
+  @media (max-width: 479px) {
+    #logo-img
+    {
+        display:none;
+    
+    }
+    .navbar-brand h1
+    {
+        font-size: 2.7em;
+        text-align: center;
+    }
+    .navbar-brand p
+    {
+        font-size: 0.7em;
+     
+    }
+
+  }
+  
+  
