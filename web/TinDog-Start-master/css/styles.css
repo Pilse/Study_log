@@ -1,0 +1,46 @@
+h1
+{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 3rem;
+    color:white;
+    line-height: 1.5;
+    margin-bottom:25px;
+}
+
+/* ID */
+
+#title
+{
+    background-color: #ff4c68;
+}
+
+/* Class */
+
+.container-fluid
+{
+    padding:3% 15%;
+}
+
+.navbar
+{
+    font-family: 'ubuntu';
+    padding-left:0;
+}
+.navbar-item
+{
+    margin: auto 25px;
+}
+.navbar-brand
+{
+   
+    font-size: 3rem;
+}
+.row
+{
+    margin-top:100px;
+}
+.btn
+{
+    margin-right:10px;
+}
