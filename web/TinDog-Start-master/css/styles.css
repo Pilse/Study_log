@@ -45,7 +45,6 @@ p
     background-color: white;
  
 }
-
 #testimonials
 {
     text-align: center;
@@ -168,7 +167,8 @@ p
 }
 .cta-h3
 {
-    font-size: 2rem;
+    font-weight: 800;
+    font-size: 3rem;
     padding:4% auto 2%;
     line-height: 1.5;
 }
