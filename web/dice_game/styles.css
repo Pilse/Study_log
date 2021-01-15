@@ -1,0 +1,37 @@
+body{
+    background-color: rgb(49, 45, 58);
+    color: mediumseagreen;
+    font-family: 'Lobster', cursive;
+    text-align: center;
+}
+
+.container{
+    padding: 5% 15%;
+}
+
+/* playerInfo */
+.winner{
+    font-size: 8rem;
+    font-weight: bold;
+}
+
+/* dice */
+.dice{
+    color: white;
+    
+}
+p{
+    font-family: 'Indie Flower', cursive;
+    font-size: 2rem;
+}
+
+/* footer */
+
+#developerInfo{
+    padding:5% 15%;
+}
+#developerInfo p{
+    font-family: 'Indie Flower';
+    color: white;
+    font-size: 1rem;
+}
