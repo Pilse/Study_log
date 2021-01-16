@@ -1,7 +1,7 @@
 body{
     background-color: rgb(49, 45, 58);
     color: mediumseagreen;
-    font-family: 'Lobster', cursive;
+    font-family: 'Lobster', 'Gamja Flower', cursive;
     text-align: center;
 }
 
@@ -21,8 +21,23 @@ body{
     
 }
 p{
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Indie Flower', 'Gamja Flower';
     font-size: 2rem;
+}
+
+.dicebtn{
+    padding: 10%;
+}
+.startgame{
+    
+    width: 50%;
+    height: 50px;
+    border-radius: 10px;
+    background-color: mediumseagreen;
+    color: white;
+}
+.player{
+    padding: 10%;
 }
 
 /* footer */
@@ -31,7 +46,7 @@ p{
     padding:5% 15%;
 }
 #developerInfo p{
-    font-family: 'Indie Flower';
+    font-family: 'Indie Flower', 'Gamja Flower';
     color: white;
     font-size: 1rem;
 }

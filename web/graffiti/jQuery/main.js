@@ -1,0 +1,9 @@
+$('button').html('<em>wow</em>');
+$('h1').addClass('big-heading');
+$('a').attr('href','http://yahoo.com');
+$('button').click(function(){
+    $('h1').css('color','purple');
+})
+$(document).keydown(function(event){
+    $('h1').html(event.key);
+})

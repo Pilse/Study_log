@@ -141,20 +141,33 @@
 // }
 // console.log(whosPaying(["a","b","c","d","e"]));
 
-function fibonacciGenerator(n){
-    var first=0;
-    var second=1;
-    var output=[];
-    for(var i=0;i<n;i++)
-    {
-        if(i===0)
-            output.push(first);
-        else if(i===1)
-            output.push(second);
-        else
-            output.push((output[output.length-1])+(output[output.length-2]))
+// function fibonacciGenerator(n){
+//     var first=0;
+//     var second=1;
+//     var output=[];
+//     for(var i=0;i<n;i++)
+//     {
+//         if(i===0)
+//             output.push(first);
+//         else if(i===1)
+//             output.push(second);
+//         else
+//             output.push((output[output.length-1])+(output[output.length-2]))
+//     }
+//     return output;
+// }
+// output=fibonacciGenerator(5);
+// console.log(output);
+
+function Housekeeper (yearsOfExperience,name,cleaningRepertorie){
+    this.yearsOfExperience = yearsOfExperience;
+    this.name =name;
+    this.cleaningRepertorie = cleaningRepertorie;
+    this.cleaning = function() {
+        alert('cleaning in progress');
     }
-    return output;
 }
-output=fibonacciGenerator(5);
-console.log(output);
+
+var houseKeeper1 = new Housekeeper(13,'john',['toilet','bedroom']);
+console.log(houseKeeper1);
+houseKeeper1.cleaning();
