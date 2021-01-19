@@ -1,0 +1,30 @@
+body{
+    background-color: darkslateblue;
+    text-align: center;
+    font-family: 'ubuntu';
+    color:white;
+
+}
+.container{
+    padding : 7% 15%;
+}
+.label{
+    font-size: 4.5rem;
+    margin-bottom: 10%;
+}
+.button{
+    width: 10%;
+    background-color: rgb(92, 155, 155);
+    border-radius: 20px;
+    border : 1px solid darkslategray;
+    margin-left: 5%;
+}
+.button:hover{
+    background-color: rgb(71, 95, 95);
+}
+span{
+    color:skyblue;
+}
+.type{
+    border-radius: 10px;
+}

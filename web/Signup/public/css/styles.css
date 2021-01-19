@@ -44,3 +44,15 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.container{
+  color: white;
+}
+.heading{
+  font-size: 5rem;
+}
+.jumbotron{
+  margin: 10% 30%;
+}
+.float-end{
+  margin-top: 10px;
+}

@@ -4,6 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;900&family=Ubuntu:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+    rel="stylesheet">
 
     <title>Weather App</title>
 </head>
@@ -11,9 +18,9 @@
 <body>
     <div class="container">
         <form action="/" method="post">
-            <label for="cityName">City &nbsp;</label>
-            <input type="text" id="cityName" placeholder="City Name" name='cityName'>
-            <button type="submit">Go</button>
+            <label class="label" for="cityName">How's the <span>weather</span> in &nbsp;</label>
+            <input class='type' type="text" id="cityName" placeholder="&nbsp;City Name" name='cityName'>
+            <button class="button" type="submit">Go</button>
         </form>
     </div>
 </body>
