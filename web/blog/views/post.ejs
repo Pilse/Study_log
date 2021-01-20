@@ -1,0 +1,30 @@
+<%- include('partials/header'); -%>
+<div class='container'>
+    <div class="box">
+        <h1>
+            <%= post.title %>
+        </h1>
+        <p>
+            <%= post.body %>
+        </p>
+    </div>
+
+    <h2>Leave a comment</h2>
+    <form action="/comment/<%=post.title%>" method="POST">
+    <textarea name="comment" cols="30" rows="10"class="commentText" ></textarea>
+    <div><button type="submit" class="btn btn-dark commentbtn">add</button></div>
+    </form>
+    <div class="comment">
+    <% for(var i=0;i < comment.length;i++){ %>
+        <% if(comment[i].commentTitle === post.title){%>
+        <div class="comment-item">
+             <p><%= comment[i].body %></p>
+        </div>
+        <% } %>
+    <% } %>
+    </div>
+   
+</div>
+
+
+<%- include('partials/footer'); -%>

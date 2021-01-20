@@ -1,0 +1,15 @@
+<%- include('partials/header'); -%>
+    <div class='container'>
+        <% for(var i=0;i < home.length;i++){ %>
+            <div class="box">
+                 <h1> <%= home[i].title %></h1>
+                 <p> <%= home[i].shortBody %> <span><a href="/posts/<%=home[i].title%>">read more</a></span> </p>
+            </div>
+            <% } %>
+            <form action="/compose">
+                <button class="btn btn-lg btn-dark homebtn" type="submit">New post</button>
+            </form>
+        
+    </div>
+
+<%- include('partials/footer'); -%>
