@@ -1,6 +1,5 @@
 
 <%- include('header'); -%>
-<body>
     <div class='box heading'>
         <h1>
             <%= kindOfDay %>
@@ -8,22 +7,26 @@
     </div>
 
     <div class="box ">
-            <% for (var i=0 ; i < newTodoList.length; i++) { %>
+            <% newTodoList.forEach(function(newTodoList){ %>
             <div class="item">    
                 <input type="checkbox">
                 <p>
-                    <%= newTodoList[i] %>
+                    <%= newTodoList.todoListItem %>
                 </p>
+                <form action="/delete" method="POST" class="delete-btn">
+                    <button name='delete' value="<%= newTodoList.todoListItem %>" class='delete hidden'>
+                        delete
+                    </button>
+                </form>
             </div>
-                <% } %>
+                <% }) %>
 
-        <form action="/" method="POST">
+        <form action="/" method="POST"  >
             <input type="text" name="todo" placeholder="New todo">
             <button class='btn' type="submit" name="button">+</button>
         </form>
     </div>
 
-
-</body>
+  
 
 <%- include('footer'); -%>

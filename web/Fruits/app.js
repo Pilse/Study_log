@@ -38,23 +38,35 @@ const banana = new Fruit({
     name : 'Banana',
     score: 8,
     review : 'best fruit ever'
-})
+});
 const peach = new Fruit({
     name: 'Peach',
     score: '7',
     review: 'good, but randomly.'
+});
+
+const pineapple = new Fruit({
+    name: 'Pineapple',
+    score: '6',
+    review: 'Great, randomly.'
 })
 
-// peach.save();
+const strawberry = new Fruit({
+    name: 'Strawberry',
+    rating: 7,
+    review: 'Sweet, randomly.'
+});
+strawberry.save();
+peach.save();
 
-// Fruit.insertMany([kiwi,orange,banana],function(err){
-//     if(err){
-//         console.log(err);
-//     }
-//     else{
-//         console.log('success');
-//     }
-// });
+Fruit.insertMany([kiwi,orange,banana],function(err){
+    if(err){
+        console.log(err);
+    }
+    else{
+        console.log('success');
+    }
+});
 Fruit.find(function(err,fruits){
 
     if(err)
@@ -87,17 +99,31 @@ Fruit.deleteOne({name : 'Peach'},function(err){
 
 const humanSchema = new mongoose.Schema({
     name : String,
-    age : Number
+    age : Number,
+    favouriteFruit : fruitSchema
 });
 
 const Human = mongoose.model('human',humanSchema);
 
 
-
 const human = new Human({
-    name: 'john',
-    age: 24
+    name: 'Amy',
+    age: 13,
+    favouriteFruit : pineapple
 });
+
+Human.updateOne({name: 'Amy'},{favouriteFruit: pineapple},function(err){
+    if(err){
+        console.log(err);
+    }
+});
+
+mongoose.connection.dropCollection('humen',function(err,result){
+    if(err)
+        console.log(err);
+});
+
+
 
 human.save();
 
