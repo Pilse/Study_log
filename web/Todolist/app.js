@@ -7,7 +7,7 @@ app.set('view engine','ejs');
 app.use(express.static('public'));
 
 
-mongoose.connect('mongodb://localhost:27017/todoListDB',{ useNewUrlParser: true ,useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://admin_pilse:abcd1838@cluster0.8a5bo.mongodb.net/todolistDB',{ useNewUrlParser: true ,useUnifiedTopology: true});
 //todo list 
 const todolistSchema = {
     todoListItem : String
@@ -16,17 +16,17 @@ const todolistSchema = {
 const Todoist = new mongoose.model('todolist',todolistSchema);
 
 const baekjoon = new Todoist({
-    todoListItem: 'Baekjoon'
+    todoListItem: 'Study'
 });
 const udemy = new Todoist({
-    todoListItem: 'Udemy'
+    todoListItem: 'Work'
 });
 const game = new Todoist({
-    todoListItem: 'Game'
+    todoListItem: 'Exercise'
 });
 
 var defaultLists = [baekjoon,udemy,game];
-//work list
+
 
 app.get('/',function(req,res){
 
@@ -76,6 +76,6 @@ app.post('/delete',function(req,res){
 
 
 
-app.listen(3000,function(){
-    console.log('Server started on port 3000');
+app.listen(process.env.PORT || 3000, function(){
+    console.log('Server has started');
 });

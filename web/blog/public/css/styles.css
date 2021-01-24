@@ -18,7 +18,7 @@ body{
     letter-spacing: 3px;
 }
 p{
-    margin:1.5rem 0;
+    padding:1.5rem 0;
     line-height: 2;
     font-family: 'Montserrat';
 }
@@ -34,6 +34,7 @@ textarea{
 input[type='text']{
     margin: 2rem 0 0;
     border-radius: 5px;
+    width: 80%;
     border:1px solid rgba(128, 128, 128, 0.568);
 }
 .box{
@@ -55,6 +56,7 @@ a:hover{
 
 .comment-item{
     border-bottom: 1px solid rgba(128, 128, 128, 0.301);
+    position: relative;
     
 }
 .commentText{
@@ -71,4 +73,21 @@ a:hover{
 
 h2{
     margin-top: 3rem;
+}
+.comment-btn{
+    position:absolute;
+    top:0px;
+    right: 0px;
+}
+.UD-btn{
+    background-color: transparent;
+    border: none;
+    color:rgba(128, 128, 128, 0.76);
+    padding-left: 0;
+}
+.hidden{
+    display: none;
+}
+.UD-btn:hover{
+    color: red;
 }

@@ -7,6 +7,11 @@
         <p>
             <%= post.body %>
         </p>
+        <form action="/delete" method="POST">
+            <input type="hidden" name='title' value="<%= post.title %>" >
+            <input type="hidden" name='delete' value="post" >
+            <button class='UD-btn'type="submit" name="deletePost" value="<%= post._id %>">delete</button>
+        </form>
     </div>
 
     <h2>Leave a comment</h2>
@@ -15,15 +20,19 @@
     <div><button type="submit" class="btn btn-dark commentbtn">add</button></div>
     </form>
     <div class="comment">
-    <% for(var i=0;i < comment.length;i++){ %>
-        <% if(comment[i].commentTitle === post.title){%>
+    <% for(var i=0;i < comment.length;i++){ %> 
         <div class="comment-item">
-             <p><%= comment[i].body %></p>
+            <p>
+                <%= comment[i].body %> 
+            </p>
+                <form class='comment-btn'action="/delete" method="POST">
+                    <input type="hidden" name='title' value="<%= post.title %>" >
+                    <input type="hidden" name='delete' value="comment" >
+                    <button class='UD-btn hidden'type="submit" name="deleteComment" value="<%= comment[i]._id %>">delete</button>
+                </form>
         </div>
-        <% } %>
     <% } %>
     </div>
-   
 </div>
 
 
