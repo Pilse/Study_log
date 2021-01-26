@@ -7,7 +7,7 @@ app.set('view engine','ejs');
 app.use(express.static('public'));
 
 
-mongoose.connect('mongodb+srv://admin_pilse:abcd1838@cluster0.8a5bo.mongodb.net/todolistDB',{ useNewUrlParser: true ,useUnifiedTopology: true});
+mongoose.connect('',{ useNewUrlParser: true ,useUnifiedTopology: true});
 //todo list 
 const todolistSchema = {
     todoListItem : String
