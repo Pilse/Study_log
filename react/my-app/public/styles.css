@@ -9,6 +9,7 @@
   body {
     background: #eee;
     padding: 0 16px;
+    align-items: flex-start;
   }
   
   header {
@@ -42,13 +43,14 @@
     padding: 10px;
     width: 240px;
     margin: 16px;
-    float: left;
+    float:left;
   }
   .note h1 {
     font-size: 1.1em;
     margin-bottom: 6px;
   }
   .note p {
+    padding-top: 12px;
     font-size: 1.1em;
     margin-bottom: 10px;
     white-space: pre-wrap;
