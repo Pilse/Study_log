@@ -1,0 +1,49 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    padding: 1rem;
+    background-color: #eeeeee;
+}
+label{
+    display: block;
+}
+.loginContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.loginLeftContainer{
+    padding-left: 5rem;
+    min-width: 800px;
+    min-height: 500px;
+    background-color: #393e46;
+    border-radius: 50px;
+    color:white;
+    font-size: 1.2rem;
+    box-shadow: 10px 10px 5px -5px rgba(0, 0, 0, 0.445);
+    
+}
+.loginLeftContainer input[type=text]{
+    width:200px;
+    margin-bottom: 2rem;
+    height: 30px;
+}
+.loginLeftContainer input[type=text]:focus{
+    outline: none;
+}
+.loginLeftContainer input[type=password]{
+    width:200px;
+    height: 30px;
+}
+.loginLeftContainer input[type=password]:focus{
+    outline: none;
+}
+.loginLeftContainer h1{
+    font-size: 4rem;
+}
+.loginLeftContainer p{
+    padding-top: 4rem;
+    color: rgba(255, 255, 255, 0.377);
+}
