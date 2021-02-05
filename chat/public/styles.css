@@ -1,49 +1,199 @@
 *{
     box-sizing: border-box;
 }
-
 body{
-    padding: 1rem;
-    background-color: #eeeeee;
+    margin:0;
+    text-align: center;
 }
-label{
-    display: block;
-}
-.loginContainer{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.loginLeftContainer{
-    padding-left: 5rem;
-    min-width: 800px;
-    min-height: 500px;
+
+/* header */
+
+.headerContainer{
     background-color: #393e46;
-    border-radius: 50px;
-    color:white;
-    font-size: 1.2rem;
-    box-shadow: 10px 10px 5px -5px rgba(0, 0, 0, 0.445);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    box-shadow: 5px 5px 5px -2px gray;
+}
+.headerContainer h1{
+    font-size: 2.3rem;
+    margin: 0;
+    color: #eeeeee;
     
 }
-.loginLeftContainer input[type=text]{
-    width:200px;
-    margin-bottom: 2rem;
-    height: 30px;
+
+/* Rooms */
+
+.allRooms{
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
 }
-.loginLeftContainer input[type=text]:focus{
+.roomContainer{
+    position: relative;
+    background-color: #393e46;
+    min-width: 400px;
+    min-height: 300px;
+    color: #eeeeee;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 30px;
+    box-shadow: 5px 5px 5px -2px gray;
+    margin:1.7rem;
+}
+
+.roomContainer:hover{
+    transition-property: background-color;
+    transition-duration:0.5s;
+    background-color: #006f75;
+}
+.roomTop{
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 2rem;
+    min-width: 400px;
+    min-height: 200px;
+    background-color: #eeeeee;
+    color: #393e46;
+    padding:2rem;
+    align-items: center;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+.roomBot{
+    position: absolute;
+    text-align: left;
+    bottom: 0;
+    
+}
+.roomCreate{
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+.roomCreate input[type=text]{
+    width:500px;
+    height: 50px;
+    border:none;
+    border-bottom: 2px solid gray;
+}
+.roomCreate input[type=text]:focus{
+   outline: none;
+}
+.roomCreate button{
+    width: 50px;
+    height: 50px;
+    margin: 1rem;
+    background-color: #00adb5;
+    font-size: 2rem;
+    color: #eeeeee;
+    border: none;
+    border-radius: 100%;
+ }
+ .roomCreate button:hover{
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    background-color: #006f75;
     outline: none;
-}
-.loginLeftContainer input[type=password]{
-    width:200px;
-    height: 30px;
-}
-.loginLeftContainer input[type=password]:focus{
+ }
+ .roomCreate button:focus{
+     outline: none;
+ }
+
+ /* Chat */
+
+ .chatContainer{
+     min-width: 300px;
+     height: 80vh;
+ }
+
+ .chatHeader {
+     display: flex;
+     justify-content: space-between;
+     margin: 0px;
+     font-size: 2rem;
+     padding: 2rem;
+     text-align: left;
+     border-bottom: 3px solid #393e461a;
+ }
+ .chatHeader button{
+     width: 100px;
+     height: 50px;
+     background-color: rgba(192, 28, 28, 0.753) ;
+     color: #eeeeee;
+     border: none;
+     border-radius: 50px;
+     font-size: 1.1rem;
+
+ }
+ .chatHeader button:hover{
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    background-color: rgba(107, 15, 15, 0.753);
     outline: none;
-}
-.loginLeftContainer h1{
-    font-size: 4rem;
-}
-.loginLeftContainer p{
-    padding-top: 4rem;
-    color: rgba(255, 255, 255, 0.377);
-}
+ }
+ 
+ .chat{
+    background-color: #eeeeee;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    font-size: 1.1rem;
+    max-height: 80%;
+    overflow: scroll;
+    overflow-x: hidden;
+ }
+ .leftMsg{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+ }
+ .leftMsg p{
+    padding: 1rem 2rem;
+    background-color: #006f75;
+    color: white;
+    border-radius: 50px;
+ }
+ .rightMsg{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  
+ }
+ .rightMsg p{
+    padding: 1rem 2rem;
+    background-color: #393e46;
+    color: white;
+    border-radius: 50px;
+ }
+ .SendMsg{
+    padding: 2rem;
+ }
+ .SendMsg input[type=text]{
+    width:500px;
+    height: 50px;
+    border:none;
+    border-bottom: 2px solid gray;
+    background-color: transparent;
+ }
+ .SendMsg input[type=text]:focus{
+    outline: none;
+ }
+ .SendMsg button{
+    width: 100px;
+    height: 50px;
+    margin: 1rem;
+    background-color: #00adb5;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+ }
+ .SendMsg button:hover{
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    background-color: #006f75;
+    outline: none;
+ }
+ 
