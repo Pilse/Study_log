@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require ('cors');
 const socket = require ('socket.io');
-const route = require('./routes/index');
 const http = require('http');
 
 
@@ -10,50 +9,67 @@ const server = http.createServer(app);
 const io = socket(server);
 
 app.use(cors());
-app.use('/',route);
+app.get('/',(req,res)=>{
+    res.send('server is running');
+})
 
 const rooms = [];
 
-async function addRoom (id,room,time,user) {
-    const newRoom = {id:id,room:room,time:time,user:user};
+app.get('/rooms',(req,res)=>{
+    res.send(JSON.stringify(rooms));
+})
+
+
+
+async function addRoom (id,name,time,user,userid) {
+    const newRoom = {id:id,room:name,time:time,user:user,userIds:[userid]};
     await rooms.push(newRoom);
     return rooms;
 }
 
-function deleteRoom(id) {
-    const index= rooms.findIndex(foundRoom=>foundRoom.id===id);
+function deleteRoom(room) {
+    const index= rooms.findIndex(foundRoom=>foundRoom.room===room);
     return rooms.splice(index, 1)[0];
 }
 
-function addUser (room){
-    const index= rooms.findIndex(foundRoom=>foundRoom.room===room);
-    rooms[index].user = rooms[index].user+1;
-    return rooms;
-}
 
+io.on('connection',(socket)=>{
+  console.log('new user joined');
 
-io.on('connect',(socket)=>{
-    socket.emit('rooms',rooms);
-    socket.on('rooms',async (room)=>
-    {
-        const t = await rooms.find(foundroom=>(foundroom.room===room.room));
-        if(t){
-            addUser(room.room);
-            socket.broadcast.emit('rooms',rooms);
-        }
+  socket.on('join',({name, time, user})=>{
+      const foundRoom=rooms.findIndex(room=>room.room===name);
+      if(foundRoom>=0){
+        rooms[foundRoom].user=rooms[foundRoom].user+1;
+        rooms[foundRoom].userIds.push(socket.id);
+        socket.join(name);
+      }
+      else{
+        addRoom(socket.id,name,time,user,socket.id);
+        socket.join(name);
+      }
+    socket.on('message',(props,callback)=>{
+        socket.broadcast.to(props.name).emit('message',{message:props.inputMsg,who:'other'});
+        socket.emit('message',{message:props.inputMsg,who:'me'});
+        callback();
+    })
+  })
+    
+  socket.on('disconnect',()=>{
+        console.log('user disconnected');
+        const disconnectedRoom = rooms.findIndex(room=>
+        room.userIds.find(userId=>
+            socket.id===userId
+            )
+        )
+        const disconnectedUserId=rooms[disconnectedRoom].userIds.findIndex(userId=>userId===socket.id);
+        if(rooms[disconnectedRoom].user===1)
+            deleteRoom(rooms[disconnectedRoom].room);
         else{
-            addRoom(socket.id,room.room,room.time,room.user);
-            socket.broadcast.emit('rooms',rooms);
+            rooms[disconnectedRoom].user=rooms[disconnectedRoom].user-1;
+            rooms[disconnectedRoom].userIds.splice(disconnectedUserId,1);
         }
-    });
-    socket.on('join',(room)=>{
-        console.log(room.name);
-        socket.join(room.name);
-    })
 
-    socket.on('disconnect',()=>{
-        console.log('disconect');
-    })
+  })
 })
 
 const port=5000;

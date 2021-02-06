@@ -1,18 +1,18 @@
 import React from 'react';
 
-function messages() {
+function messages({ msg, who }) {
     return (
         <>
-            <div className='leftMsg'>
-                <p>hi</p>
+            {who === 'me' &&
+                <div className='rightMsg'>
+                    <p>{msg}</p>
+                </div>}
+            {who === 'other' &&
+                <div className='leftMsg'>
+                    <p>{msg}</p>
+                </div>
+            }
 
-            </div>
-            <div className='rightMsg'>
-                <p>hello</p>
-                <p>hi</p>
-                <p>hi</p>
-
-            </div>
         </>
     );
 }

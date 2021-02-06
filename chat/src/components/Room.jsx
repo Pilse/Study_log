@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 function Room({room, time, user}) {
     return (
-        <Link to={`/chat/${room}`}>
+        <Link to={`/chat/${room}/`}>
             <div className='roomContainer'>
                 <div className='roomTop'>{room}</div>
                 <div className='roomBot'>

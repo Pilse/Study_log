@@ -5,6 +5,7 @@ import Header from './Header';
 import Rooms from './Rooms';
 import Chat from './Chat'
 
+
 function App() {
     return (
         
@@ -13,7 +14,7 @@ function App() {
             <Route path='/' exact> <Rooms /></Route>
             <Route path='/login' exact> <Login /> </Route>
             <Switch>
-                <Route path='/chat/:name' exact><Chat /></Route>
+                <Route path='/chat/:name/' exact><Chat /></Route>
             </Switch>
         </Router>
     );
