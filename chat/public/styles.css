@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Poor+Story&display=swap');
 *{
     box-sizing: border-box;
+    font-family: 'Poor Story', cursive;
 }
 body{
     margin:0;
@@ -16,6 +18,7 @@ body{
     box-shadow: 5px 5px 5px -2px gray;
 }
 .headerContainer h1{
+    font-family: 'Do Hyeon', sans-serif;
     font-size: 2.3rem;
     margin: 0;
     color: #eeeeee;
@@ -47,20 +50,26 @@ body{
     transition-property: background-color;
     transition-duration:0.5s;
     background-color: #006f75;
+  
+    
 }
 .roomTop{
     position: absolute;
     top: 0;
     left: 0;
     font-size: 2rem;
-    min-width: 400px;
-    min-height: 200px;
+    width: 400px;
+    height: 200px;
     background-color: #eeeeee;
     color: #393e46;
     padding:2rem;
     align-items: center;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
+    font-weight: bold;
+    overflow: auto;
+    font-family: 'Do Hyeon', sans-serif;
+    letter-spacing: 3px;
 }
 .roomBot{
     position: absolute;
@@ -68,18 +77,32 @@ body{
     bottom: 0;
     
 }
+
 .roomCreate{
     justify-content: center;
     margin-bottom: 4rem;
 }
+.roomCreate input{
+    margin-top:1rem;
+}
 .roomCreate input[type=text]{
-    width:500px;
+    width:50%;
     height: 50px;
     border:none;
+    font-size: 1.5rem;
+    font-weight: bold;
     border-bottom: 2px solid gray;
 }
 .roomCreate input[type=text]:focus{
-   outline: none;
+    outline: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    
+  
+}
+.roomCreate input::placeholder{
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 .roomCreate button{
     width: 50px;
@@ -100,6 +123,16 @@ body{
  .roomCreate button:focus{
      outline: none;
  }
+ .roomIndex{
+     text-align: left;
+     margin-left: 5rem;
+     font-family: 'Do Hyeon', sans-serif;
+     font-weight: bold;
+     font-size: 3.2rem;
+     text-decoration: underline;
+     color: #393e46;
+     letter-spacing: 4px;
+ }
 
  /* Chat */
 
@@ -112,14 +145,18 @@ body{
      display: flex;
      justify-content: space-between;
      margin: 0px;
-     font-size: 2rem;
+     font-size: 2.5rem;
      padding: 2rem;
      text-align: left;
      border-bottom: 3px solid #393e461a;
+     font-family: 'Do Hyeon', sans-serif;
  }
  .chatRoomName{
      color:#393e46;
      font-weight: bold;
+     font-family: 'Do Hyeon', sans-serif;
+     letter-spacing: 3px;
+     
  }
  .chatHeader button{
      width: 100px;
@@ -154,11 +191,18 @@ body{
     flex-direction: column;
     align-items: flex-start;
  }
+ .RowMsg{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+ }
  .leftMsg p{
     padding: 1rem 2rem;
     background-color: #006f75;
     color: white;
     border-radius: 50px;
+    margin-top: 0;
+    position: relative;
  }
  .rightMsg{
     display: flex;
@@ -171,16 +215,30 @@ body{
     background-color: #393e46;
     color: white;
     border-radius: 50px;
+    margin-top: 0;
+ }
+ .botMsg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color:rgba(0, 0, 0, 0.201);
  }
  .SendMsg{
     padding: 2rem;
+    margin-top:1rem;
  }
  .SendMsg input[type=text]{
-    width:500px;
+    width:60%;
     height: 50px;
     border:none;
     border-bottom: 2px solid gray;
     background-color: transparent;
+    font-size: 1rem;
+    font-weight: bold;
+ }
+ .SendMsg input::placeholder{
+    font-size: 1rem;
+    font-weight: bold;
  }
  .SendMsg input[type=text]:focus{
     outline: none;
@@ -203,5 +261,14 @@ body{
  }
  .SendMsg button:focus{
      outline: none;
+ }
+ .info{
+     color:#393e46bd;
+     font-size: 0.8rem;
+     margin: 0.4rem 0.7rem;
+ }
+ .infoname{
+     color:rgba(0, 0, 0, 0.755);
+     font-weight: bold;
  }
  

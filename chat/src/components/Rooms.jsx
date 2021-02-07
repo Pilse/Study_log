@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Room from './Room'
 
 
+
+
 const ENDPOINT = 'http://localhost:5000';
 
 function Rooms() {
@@ -13,6 +15,7 @@ function Rooms() {
     function handleChange(event) {
         setInputRoom(event.target.value);
     }
+    
 
     const fetchDatas = async () => {
         const res = await fetch(`${ENDPOINT}/rooms`);
@@ -29,11 +32,14 @@ function Rooms() {
     return (
         <div>
             <div className='roomCreate'>
-                <input onChange={handleChange} type="text" placeholder="Create Room Name" value={inputRoom} />
+                <input 
+                    onChange={handleChange}
+                    type="text" placeholder="Create Room Name" value={inputRoom} />
                 <Link onClick={(event)=>(!inputRoom||Rooms.find(room=>room.room===inputRoom)) ? (event.preventDefault(),alert('이미 존재하는 방 이름입니다.')):null} to={`/chat/${inputRoom}`} >
                     <button>+</button>
                 </Link>
             </div>
+            <h1 className='roomIndex'>Rooms</h1>
             <div className='allRooms'>
                 {Rooms.map((room) => <Room key={room.id} room={room.room} time={room.time} user={room.user} />)}
             </div>

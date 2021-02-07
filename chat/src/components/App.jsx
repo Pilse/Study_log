@@ -11,7 +11,7 @@ function App() {
         
         <Router>
             <Header />
-            <Route path='/' exact> <Rooms /></Route>
+            <Route path='/' exact > <Rooms /></Route>
             <Route path='/login' exact> <Login /> </Route>
             <Switch>
                 <Route path='/chat/:name/' exact><Chat /></Route>

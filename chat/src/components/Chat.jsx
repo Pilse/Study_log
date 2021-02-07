@@ -1,14 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Message from './messages';
 import io from 'socket.io-client';
 import ScrollToBottom from 'react-scroll-to-bottom';
-import messages from './messages';
+import { BsFillChatFill } from "react-icons/bs";
 
 let socket = '';
 let ENDPOINT = 'localhost:5000';
-
+let nickName = '';
 function Chat() {
+    if(!nickName)
+    {
+        nickName = prompt('이 방에서 사용하실 이름을 입력해주세요.');
+        if(nickName.trim()===''){
+            const randomNumber = Math.floor(Math.random()*10000+1);
+            nickName=`이름없음 ${randomNumber}`;
+        }
+    }
     let { name } = useParams();
     const time = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     const [inputMsg, setInputMsg] = useState('');
@@ -19,12 +27,19 @@ function Chat() {
         setInputMsg(event.target.value);
     }
 
-    function addMsg(event) {
+    async function addMsg() {
         console.log('addmsg');
+        const msgTime = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
         if (inputMsg === '')
             return;
-        socket.emit('message', {inputMsg,name},()=>setInputMsg(''));
+        await socket.emit('message', {inputMsg,name,msgTime,nickName},()=>setInputMsg(''));
+    }
 
+    function handleKeypress(event) {
+        if(event.key==='Enter'){
+            console.log('enter');
+            addMsg();
+        }
     }
 
     useEffect(() => {
@@ -36,45 +51,51 @@ function Chat() {
         };
         console.log('enter room');
         socket = io(ENDPOINT, connectionOptions);
-        socket.emit('join', { name, time, user: 1 });
+        socket.emit('join', { name, time, user: 1 ,nickName});
 
         return () =>{
             socket.emit('disconnect');
             socket.off();
         } 
 
-    }, [ENDPOINT]);
+    }, []);
 
-    useEffect(() => {
-
-        console.log('useeffect messages');
+    useEffect(()=>{
         socket.on('message', (message) => {
-            setOutputMessage([...outputMessage,message]);
+            console.log('client: msg comes in');
+            setOutputMessage(prevMsg=>[...prevMsg,message]);
         });
-    },[outputMessage]);
-    console.log('render');
-   
+    },[]);
+    console.log(outputMessage);
+
+    
 
     return (
         <div id='chat'>
             <div className='chatContainer'>
                 <div className='chatHeader'>
-                    <div className='chatRoomName'>{name}</div>
+                    <div className='chatRoomName'><BsFillChatFill />&nbsp;&nbsp;{name}</div>
                     <a href='/'>
                         <button>Leave</button>
                     </a>
 
                 </div>
-                <div className='chat'>
-                    {outputMessage.map(msg =>
+                <ScrollToBottom className='chat'>
+                    {outputMessage.map((msg,index) =>
                         <Message
+                            key={index}
                             msg={msg.message}
                             who={msg.who}
+                            time={msg.time}
+                            username={msg.userName}
                         />)}
-                </div>
+                </ScrollToBottom>
             </div>
             <div className="SendMsg">
-                <input onChange={handleChange}  onKeyDown={(event)=>event.key==='Enter' ? addMsg():null} type="text" placeholder='Enter messages' value={inputMsg}  />
+                <input 
+                    onChange={handleChange}  
+                    onKeyPress={handleKeypress} 
+                    type="text" placeholder='Enter messages' value={inputMsg}  />
                 <button 
                 onClick={addMsg}
                 >Send</button>
