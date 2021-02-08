@@ -34,12 +34,12 @@ function Rooms() {
             <div className='roomCreate'>
                 <input 
                     onChange={handleChange}
-                    type="text" placeholder="Create Room Name" value={inputRoom} />
+                    type="text" placeholder="Create New Room" value={inputRoom} />
                 <Link onClick={(event)=>(!inputRoom||Rooms.find(room=>room.room===inputRoom)) ? (event.preventDefault(),alert('이미 존재하는 방 이름입니다.')):null} to={`/chat/${inputRoom}`} >
                     <button>+</button>
                 </Link>
             </div>
-            <h1 className='roomIndex'>Rooms</h1>
+            <h1 className='index'>Rooms</h1>
             <div className='allRooms'>
                 {Rooms.map((room) => <Room key={room.id} room={room.room} time={room.time} user={room.user} />)}
             </div>
