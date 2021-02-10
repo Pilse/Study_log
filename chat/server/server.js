@@ -25,7 +25,7 @@ app.get('/rooms', (req, res) => {
 
 
 async function addRoom(id, name, time, user, nickName) {
-    const newRoom = { id: id, room: name, time: time, user: user, userIds: [{ sid: id, nickName }] };
+    const newRoom = { id: id, room: name, time: time, user: user, userIds: [{ sid: id, nickName }], color:Math.floor(Math.random()*3+1)};
     await rooms.push(newRoom);
     return rooms;
 }
@@ -40,18 +40,19 @@ function deleteRoom(room) {
 io.on('connection', (socket) => {
     console.log('new user joined');
 
-    socket.on('join', ({ name, time, user, nickName }) => {
-        const foundRoom = rooms.findIndex(room => room.room === name);
+    socket.on('join', (props) => {
+        const foundRoom = rooms.findIndex(room => room.room === props.name);
         if (foundRoom >= 0) {
             rooms[foundRoom].user = rooms[foundRoom].user + 1;
-            rooms[foundRoom].userIds.push({ sid: socket.id, nickName: nickName });
-            socket.join(name);
-            io.to(name).emit('message', { message: `${nickName}님이 입장하셨습니다.`, who: 'bot', usernum:1});
+            const userNumber = rooms[foundRoom].user;
+            rooms[foundRoom].userIds.push({ sid: socket.id, nickName: props.nickName });
+            socket.join(props.name);
+            io.to(props.name).emit('message', { message: `${props.nickName}님이 입장하셨습니다.`, who: 'bot', usernum:userNumber});
         }
         else {
-            addRoom(socket.id, name, time, user, nickName);
-            socket.join(name);
-            io.to(name).emit('message', { message: `${nickName}님이 입장하셨습니다.`, who: 'bot',usernum:1 });
+            addRoom(socket.id, props.name, props.time, props.user, props.nickName);
+            socket.join(props.name);
+            io.to(props.name).emit('message', { message: `${props.nickName}님이 입장하셨습니다.`, who: 'bot',usernum:1 });
         }
     })
     socket.on('message', (props, callback) => {
@@ -90,7 +91,7 @@ io.on('connection', (socket) => {
             )
         )
         const disconnectedUserId = rooms[disconnectedRoom].userIds.findIndex(userId => userId.sid === socket.id);
-        io.to(rooms[disconnectedRoom].room).emit('message', { message: `${rooms[disconnectedRoom].userIds[disconnectedUserId].nickName}님이 퇴장하셨습니다.`, who: 'bot' })
+        io.to(rooms[disconnectedRoom].room).emit('message', { message: `${rooms[disconnectedRoom].userIds[disconnectedUserId].nickName}님이 퇴장하셨습니다.`, who: 'bot', usernum:rooms[disconnectedRoom].user-1})
         if (rooms[disconnectedRoom].user === 1)
             deleteRoom(rooms[disconnectedRoom].room);
         else {

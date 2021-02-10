@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Login from './Login';
 import Header from './Header';
 import Rooms from './Rooms';
-import Chat from './Chat'
+import Chat from './Chat';
+
 
 
 function App() {

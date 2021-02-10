@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Message from './messages';
 import io from 'socket.io-client';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { BsFillChatFill } from "react-icons/bs";
+import Messages from './Messages';
 
 let socket = '';
 let ENDPOINT = 'localhost:5000';
@@ -24,6 +24,7 @@ function Chat() {
     const [translateState, setTranslateState] = useState(false);
     const [source, setSource] = useState('');
     const [target, setTarget] = useState('');
+    const [userNum, setUserNum] = useState('');
     const Fromfocus = useRef();
 
     let translateStyle = {
@@ -86,6 +87,7 @@ function Chat() {
         socket.on('message', (message) => {
             console.log('client: msg comes in');
             setOutputMessage(prevMsg => [...prevMsg, message]);
+            setUserNum(message.usernum);
         });
     }, []);
    
@@ -95,7 +97,7 @@ function Chat() {
         <div ref={Fromfocus} id='chat'>
             <div className='chatContainer'>
                 <div className='chatHeader'>
-                    <div className='chatRoomName'><BsFillChatFill />&nbsp;&nbsp;{name}</div>
+                    <div className='chatRoomName'><BsFillChatFill />&nbsp;&nbsp;{name}({userNum})</div>
                     <a href='/'>
                         <button>Leave</button>
                     </a>
@@ -103,7 +105,7 @@ function Chat() {
                 </div>
                 <ScrollToBottom className='chat'>
                     {outputMessage.map((msg, index) =>
-                        <Message
+                        <Messages
                             key={index}
                             msg={msg.message}
                             who={msg.who}

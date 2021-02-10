@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "utility": "cpp"
+        "*.jsx": "javascriptreact",
+        "utility": "cpp",
+        "algorithm": "cpp"
     }
 }

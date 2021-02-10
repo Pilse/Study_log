@@ -17,15 +17,14 @@ function Rooms() {
     }
     
 
-    const fetchDatas = async () => {
-        const res = await fetch(`${ENDPOINT}/rooms`);
-        const rooms = await res.json();
-        setRooms(rooms);
-    }
-
     useState(() => {
+        const fetchDatas = async () => {
+            const res = await fetch(`${ENDPOINT}/rooms`);
+            const rooms = await res.json();
+            setRooms(rooms);
+        }
         fetchDatas();
-    },[Rooms])
+    },[Rooms]);
 
 
 
@@ -41,7 +40,7 @@ function Rooms() {
             </div>
             <h1 className='index'>Rooms</h1>
             <div className='allRooms'>
-                {Rooms.map((room) => <Room key={room.id} room={room.room} time={room.time} user={room.user} />)}
+                {Rooms.map((room) => <Room key={room.id} room={room.room} time={room.time} user={room.user} color={room.color}/>)}
             </div>
         </div>
     );
