@@ -49,12 +49,12 @@ int main()
                     {
                         stor[j] = v[i - 1].second;
                         dp[i] = j;
-                        break;
                     }
                 }
             }
         }
+        cout << idx << endl;
     }
-    cout << N-idx << endl;
+    cout << idx << endl;
 }
 //8 2 9 1 4 6 7 10
