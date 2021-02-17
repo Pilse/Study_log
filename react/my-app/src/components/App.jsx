@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
@@ -29,7 +29,13 @@ function App() {
             }
         });
     }
-
+    useEffect(()=>{
+        console.log('effect start');
+        return(()=>{
+            console.log('effect finish');
+        })
+    },[allNotes])
+    console.log('render');
 
     return (
         <div>

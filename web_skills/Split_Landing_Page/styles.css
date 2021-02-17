@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    font-family: 'Roboto',sans-serif;
+    overflow: hidden;
+    margin:0;
+}
+.container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.split{
+    position:absolute;
+    width: 50%;
+    height: 100%;
+}
+.left{
+    left:0;
+    background: url('https://t1.daumcdn.net/cfile/tistory/995D563C5EE8888803');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.left::before{
+    content:'';
+    position:absolute;
+    width:100%;
+    height: 100%;
+    left:0;
+    background: rgba(0, 0, 255, 0.6);
+}
+.right{
+    right:0;
+    background: url('https://img2.quasarzone.com/editor/2020/08/19/0aa6c7cc28386baa2ff8ca71a2861f41.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.right::before{
+    content:'';
+    position:absolute;
+    width:100%;
+    height: 100%;
+    left:0;
+    background: rgba(0, 0, 11, 0.6);
+}
+h1{
+    position: absolute;
+    top:20%;
+    left:50%;
+    transform:translateX(-50%);
+    color:white;
+    font-size: 3rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:40%;
+    left:50%;
+    transform:translateX(-50%);
+    color:white;
+    text-decoration: none;
+    border:3px solid white;
+    padding: 10px;
+    width:150px;
+    font-weight: bold;
+    transition: transform 0.2s linear;
+}
+.left .btn:hover{
+    border-color:blue;
+    background-color: blue;
+    
+}
+.right .btn:hover{
+    border-color:green;
+    background-color: green;
+    
+}
+.left.hover,.right.hover{
+    width:75%;
+}
+.left.other,.right.other{
+    width:25%;
+    z-index: -1;
+}
+.left, .right{
+    transition:width 0.4s ease-in-out;
+}
+@media(max-width:1200px){
+    h1{
+        font-size: 2.3rem;
+    }
+    .btn{
+        padding:7px;
+    }
+}
+@media(max-width:960px){
+    h1{
+        font-size: 2.1rem;
+    }
+    .btn{
+        padding:5px;
+    }
+}
