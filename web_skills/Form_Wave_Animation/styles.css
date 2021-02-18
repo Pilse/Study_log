@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Ubuntu',sans-serif;
+    overflow: hidden;
+    margin:0;
+    background-color: steelblue;
+}
+.container{
+    background-color: rgba(0,0,0,0.4);
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px -3px rgba(0,0,0,0.6);
+}
+.container h1{
+    text-align: center;
+    margin-bottom: 30px;
+}
+.form-control{
+    position: relative;
+    margin: 40px 0;
+}
+.form-control input{
+    height: 30px;
+    width:100%;
+    outline:none;
+    background-color: transparent;
+    border:none;
+    border-bottom: 3px white solid;
+    color: white;
+    font-size: 16px;
+    padding: 3px;
+}
+.form-control input:focus, .form-control input:valid{
+    border-bottom-color: lightblue;
+}
+.form-control label{
+    position: absolute;
+    top:0;
+    left: 3px;
+}
+.form-control input:focus + label, .form-control input:valid + label{
+    color:lightblue;
+}
+.form-control label span{
+    display: inline-block;
+    transition: 0.2s ease;
+}
+.form-control input:focus + label span, .form-control input:valid + label span{
+    transform: translateY(-20px);
+}
+.container .btn{
+    width:100%;
+    height:30px;
+    font-size:1rem;
+    border:none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.container a{
+    text-decoration: none;
+    color:lightblue
+}

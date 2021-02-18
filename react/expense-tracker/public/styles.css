@@ -1,0 +1,123 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    text-align: center;
+    padding:1rem;
+}
+
+/* balance */
+
+.container{
+    position: relative;
+    width:450px;
+}
+.container p{
+    text-align: left;
+    margin-top: 3rem;
+    margin-bottom: 0;
+    font-size: 1.2rem;
+}
+.container .balance-total{
+    text-align: left;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+/* incomeexpense */
+
+.incomeExpense-container{
+    display: flex;
+    justify-content: center;
+    background-color: rgba(1,1,1,0.05);
+    margin-top: 2rem;
+}
+.split{
+    padding: 2rem 5rem ;
+    font-size: 1.3rem;
+}
+.left{
+    border-right:2px solid rgba(128, 128, 128, 0.153);
+}
+.income{
+    color:green;
+}
+.expense{
+    color:red;
+}
+
+/* transaction */
+
+.transaction-container p{
+    border-bottom: 1px solid rgba(128, 128, 128, 0.358);
+    padding: auto 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+.transaction-lists{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction: column;
+}
+.transaction-list{
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+    padding: 1rem;
+    background-color: rgba(1,1,1,0.05);
+    margin: 0.5rem 0;
+}
+.transaction-item{
+    color:rgba(0, 0, 0, 0.65);
+}
+.transaction-list.plus{
+    border-right: 4px solid green;
+}
+.transaction-list.minus{
+    border-right: 4px solid red;
+}
+
+/* createtransaction */
+
+.createTransaction-container p{
+    border-bottom: 1px solid rgba(128, 128, 128, 0.358);
+    padding: auto 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+.input-control{
+    display: block;
+    text-align: left;
+}
+.input-control label{
+    display: block;
+    font-weight: bold;
+}
+.input-control input{
+    width:100%;
+    border:none;
+    outline: none;
+    height: 1.5rem;
+    padding: 1.5rem 1.5rem 1.5rem 0.5rem;
+    background-color: rgba(1,1,1,0.05);
+    margin:0.5rem 0;
+    font-size: 1rem;
+}
+.createTransaction-container .btn{
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: rgba(102, 51, 153, 0.63);
+    padding:1rem 3rem;
+    margin-top:1rem;
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+}
