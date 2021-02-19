@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Ubuntu',sans-serif;
+    overflow-x: hidden;
+    margin:0;
+    background-color: #f2f2f2;
+    padding: 15px;
+}
+h1{
+    text-align: center;
+    margin: 2rem auto;
+}
+.faq-container{
+    max-width: 600px;
+    margin:0 auto;
+}
+.faq{
+    position: relative;
+    border:1px solid rgba(128, 128, 128, 0.637);
+    padding:1rem 2rem;
+    line-height: 1.5;
+    margin:1.5rem auto;
+    border-radius: 10px;
+    transition: 0.3s ease-out;
+}
+.faq.active{
+    background-color: white;
+    box-shadow: 5px 3px 5px -2px rgba(0, 0, 0, 0.523);
+}
+
+.faq.active::before,.faq.active::after{
+    content: '\f075';
+    font-family: 'Font Awesome 5 Free';
+    font-size:6rem;
+    position: absolute;
+    top:15px;
+    left:15px;
+    opacity: 0.2;
+    color:lightblue;
+}
+.faq.active::after{
+    top: 50px;
+    left:50px;
+    color:greenyellow;
+    transform: rotateY(180deg);
+}
+.faq-text{
+    display: none;
+}
+.faq.active .faq-text{
+    display: block;
+    margin-bottom: 1rem;
+}
+button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:none;
+    outline: none;
+    background-color: transparent;
+    font-size: 1.3rem;
+    position: absolute;
+    top:30px;
+    right: 30px;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+.faq button .fa-times{
+    display: none;
+}
+.faq.active button{
+    background-color: gray;
+    color:white;
+}
+.faq.active button .fa-times{
+    display: block;
+}
+.faq.active button .fa-chevron-down{
+    display: none;
+}

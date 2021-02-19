@@ -4,7 +4,7 @@ import { GlobalContext } from './context/GlobalState';
 function IncomeExpense () {
 
     const {transactons} = useContext(GlobalContext);
-
+    console.log(transactons);
     let amountArr = transactons.filter(transaction=>{
         return transaction.amount>=0;
     });
@@ -15,8 +15,8 @@ function IncomeExpense () {
     });
     minusArr = minusArr.map(minusArr=>minusArr.amount);
 
-    const plusTotal = amountArr.reduce((acc,cur)=>{return acc=acc+cur}).toFixed(2);
-    const minusTotal = minusArr.reduce((acc,cur)=>{return acc=acc+cur}).toFixed(2);
+    const plusTotal = amountArr.reduce((acc,cur)=>{return acc=acc+cur},0).toFixed(2);
+    const minusTotal = minusArr.reduce((acc,cur)=>{return acc=acc+cur},0).toFixed(2);
 
     return(
         <div className="incomeExpense-container">
@@ -26,7 +26,7 @@ function IncomeExpense () {
             </div>
             <div className="split right">
                 EXPENSE
-            <div className="expense">${minusTotal}</div>
+            <div className="expense">${Math.abs(minusTotal).toFixed(2)}</div>
             </div>
         </div>
     );

@@ -14,6 +14,7 @@ function TransactionList() {
                 {transactons.map(transacton=>
                     <Transaction 
                         key={transacton.id}
+                        id={transacton.id}
                         text={transacton.text}
                         amount={transacton.amount}
                     />)}

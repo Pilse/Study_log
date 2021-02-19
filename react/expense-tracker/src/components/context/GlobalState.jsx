@@ -4,8 +4,7 @@ import AppReducer from './AppReducer'
 
 const initialState = {
     transactons: [
-        { id: 1, text: 'Cash', amount: 500 },
-        { id: 2, text: 'Book', amount: -40 }
+        
     ]
 };
 
@@ -24,10 +23,10 @@ export const GlobalProvider = ({ children }) => {
         })
     }
 
-    function deleteTransaction({ id }) {
+    function deleteTransaction( id ) {
         dispatch({
             type: 'DELETE_TRANSACTION',
-            id
+            id:id
         })
     }
     return (

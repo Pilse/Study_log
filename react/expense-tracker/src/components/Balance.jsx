@@ -8,7 +8,7 @@ function Balance () {
         return transaction.amount;
     });
     console.log(amountArr);
-    const total = amountArr.reduce((acc,cur)=>{return acc=acc+cur}).toFixed(2);
+    const total = amountArr.reduce((acc,cur)=>{return acc=acc+cur},0).toFixed(2);
     return(
         <div className='balance-container'>
             <p>YOUR BALANCE</p>

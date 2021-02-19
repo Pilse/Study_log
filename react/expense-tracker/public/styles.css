@@ -35,11 +35,12 @@ body{
 .incomeExpense-container{
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: rgba(1,1,1,0.05);
     margin-top: 2rem;
 }
 .split{
-    padding: 2rem 5rem ;
+    padding: 2rem 4.55rem ;
     font-size: 1.3rem;
 }
 .left{
@@ -67,12 +68,35 @@ body{
     flex-direction: column;
 }
 .transaction-list{
+    position: relative;
     display: flex;
     justify-content: space-between;
     width:100%;
     padding: 1rem;
     background-color: rgba(1,1,1,0.05);
     margin: 0.5rem 0;
+}
+.transaction-delete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:50%;
+    left:-20px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding:7px;
+    opacity:0;
+    transition: opacity 0.2s ease;
+}
+.transaction-list:hover .transaction-delete{
+    opacity:1;
 }
 .transaction-item{
     color:rgba(0, 0, 0, 0.65);
