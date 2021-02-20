@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding : 0;
+}
+.gallery{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container{
+    width:240px;
+    height: 10%;
+    padding:1rem;
+    margin:5px;
+    box-shadow: 5px 5px 3px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.container img{
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+.container .author{
+    font-size:1.2rem;
+    font-weight: bold;
+    color:rebeccapurple
+}
+.container ul{
+    list-style-type: none;
+    padding:0;
+    margin-bottom: 1.5rem;
+}
+.container ul li{
+    margin: 0.5rem 0;
+}
+.container .tag{
+    background-color: rgba(233, 230, 230, 0.66);
+    padding:5px 10px;
+    margin: 2px 3px;
+    border:none;
+    border-radius: 15px;
+}
+.container .tags{
+    display: flex;
+    flex-wrap: wrap;
+}
+

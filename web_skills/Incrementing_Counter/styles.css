@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Roboto+Mono&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Roboto Mono',sans-serif;
+    overflow-x: hidden;
+    margin:0;
+    background-color: steelblue;
+    padding: 15px;
+}
+.counter-container{
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align:center ;
+    margin:1rem 3rem;
+}
+.counter{
+    font-size: 4rem;
+    font-weight: bold;
+}
+.counter-container span{
+    margin-top: 1rem;
+    letter-spacing: 1.5px;
+    font-family: 'Ubuntu';
+}
+@media(max-width:550px){
+    body{
+        flex-direction: column;
+    }
+}
