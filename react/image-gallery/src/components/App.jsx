@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from './image';
+import Search from './Search';
 
 function App() {
     const [images, setImages] = useState([]);
@@ -13,6 +14,8 @@ function App() {
     }, [term])
 
     return (
+        <>
+        <Search setTerm={setTerm}/>
         <div className='gallery'>
             {images.map(image => <Image
                 key={image.id}
@@ -24,6 +27,7 @@ function App() {
                 tags={image.tags}
             />)}
         </div>
+        </>
     );
 }
 

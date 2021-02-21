@@ -8,7 +8,7 @@ function Image({img, user, views, downloads, likes, tags}) {
         <div className="container">
             <img src={img} alt="" />
             <div className="photo-info">
-                <div className="author">Photo by {user}</div>
+                <div><strong>Photo by</strong> <span className="author">{user}</span></div>
             </div>
             <ul>
                 <li>

@@ -9,12 +9,13 @@ body{
 .gallery{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    height: calc(100vh*4);
+    flex-wrap: wrap;
 }
 
 .container{
-    width:240px;
-    height: 10%;
+    width:340px;
     padding:1rem;
     margin:5px;
     box-shadow: 5px 5px 3px rgba(0,0,0,0.2);
@@ -47,5 +48,25 @@ body{
 .container .tags{
     display: flex;
     flex-wrap: wrap;
+}
+.search{
+    display: flex;
+    justify-content: center;
+    padding:1rem;
+    margin: 2rem 0;
+}
+.search form{
+    width:60%;
+}
+.search input{
+    border:none;
+    outline:none;
+    border-bottom: 2px gray solid;
+    width:100%;
+    padding:10px;
+    font-size:1.1rem;
+}
+.search input:focus{
+    font-size:1.1rem;
 }
 
