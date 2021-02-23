@@ -73,9 +73,11 @@ body{
     top:0;
     background-color: rgba(0,0,0,0.8);
     height: 490px;
-    overflow: scroll;
+    overflow-x:hidden;
+    overflow-y:auto;
     opacity: 0;
     transition: 0.3s ease;
+    -ms-overflow-style: none;
 }
 .movie:hover .overview{
     opacity:1;

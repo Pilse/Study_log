@@ -2,40 +2,33 @@
 
 using namespace std;
 
-pair<int,int> things[110];
-pair<int,int> dp[110];
+int w[110];
+int v[110];
+int dp[110][100010];
 
-int main ()
+int main()
 {
-    int n,k;
-    int temp1,temp2;
-    int idx=0;
-    int largest=0;
-    cin>>n>>k;
-
-    for(int i=0;i<n;i++)
+    int N,K;
+    cin>>N>>K;
+    for(int i=1;i<=N;i++)
     {
-        cin>>temp1>>temp2;
-        things[i]=(make_pair(temp1,temp2));
+        cin>>w[i]>>v[i];
     }
-    for(int i=0;i<n;i++)
+    for(int i=1;i<=N;i++)
     {
-        if(things[i].first>k)
-            continue;
-        for(int j=0;j<idx;i++)
+        for(int j=1;j<=K;j++)
         {
-            if(dp[j].first+things[i].first>k)
-                continue;
-            dp[j].first=dp[j].first+things[i].first;
-            dp[j].second=dp[j].second+things[j].second;
+            if(j-w[i]>=0)
+            {
+                dp[i][j] = max(dp[i-1][j],dp[i-1][j-w[i]]+v[i]);
+            }
+            else
+            {
+                dp[i][j]=dp[i-1][j];
+            }
+            
         }
-        dp[++idx].first=things[i].first;  
-        dp[idx].second=things[i].second;
     }
-    for(int i=0;i<idx;i++)
-    {
-        largest=max(largest,dp[i].second);
-    }
-    cout<<largest<<endl;
-    
+    cout<<dp[N][K];
+
 }

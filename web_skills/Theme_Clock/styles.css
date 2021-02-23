@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Roboto+Mono&family=Poppins:wght@200&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+:root{
+    --primary-color:#fff;
+    --secondary-color:#111;
+}
+html.dark{
+    --primary-color:#111;
+    --secondary-color:#fff;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    overflow: auto;
+    font-family: 'Poppins',sans-serif;
+    margin:0;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    transition: background-color 0.3s ease;
+}
+.theme{
+    border:none;
+    outline: none;
+    padding:8px 15px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border-radius: 5px;
+    cursor: pointer;
+    margin:2rem 0;
+}
+.clock{
+    width:300px;
+    height: 300px;
+    position:relative;
+    margin: 5rem 0;
+}
+.needle{
+    position:absolute;
+    top:50%;
+    left:50%;
+    height: 90px;
+    width:3px;
+    background-color: var(--secondary-color);
+    transform-origin: bottom center;
+    transition:transform 1s linear;
+}
+.hour{
+    transform: translate(-50%, -100%);
+}
+.minute{
+    height: 130px;
+    transform: translate(-50%, -100%) rotate(190deg);
+}
+.second{
+    height: 150px;
+    background-color: coral;
+    transform: translate(-50%, -100%) rotate(30deg);
+}
+
+.clock-center{
+    position: absolute;
+    top:50%;
+    left:50%;
+    width:10px;
+    height: 10px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background-color: coral;
+}
+.clock-center::after{
+    content: '';
+    position: absolute;
+    top:50%;
+    left:50%;
+    width:6px;
+    height: 6px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--secondary-color);
+}
+.info{
+    margin-bottom: 3rem;
+}
+.info .time{
+    font-size: 4rem;
+    letter-spacing: 3px;
+}
+.info .date .red{
+    color: red;
+}
