@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Roboto+Mono&family=Poppins:wght@200&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    overflow: auto;
+    font-family: 'Poppins',sans-serif;
+    margin:0;
+    background-color: black;
+}
+.ripple{
+    background-color: purple;
+    color:white;
+    width:200px;
+    height: 90px;
+    border: none;
+    outline:none;
+    padding:20px 30px;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.circle{
+    position: absolute;
+    width:150px;
+    height: 150px;
+    background-color: white;
+    border-radius: 50%;
+    border:none;
+    outline: none;
+    transform: translate(-50%, -50%) scale(0);
+    animation:  0.9s ease scale;
+}
+
+@keyframes scale{
+    to{
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
