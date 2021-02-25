@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Poppins&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Poppins',sans-serif;
+    
+    margin:0;
+    background-color: #333;
+    color:white;
+}
+canvas{
+    border:2px solid gray;
+    background-color: white;
+}
+.toolbox{
+    padding:10px 0;
+    display: flex;
+    align-items: center;
+    width:450px;
+    font-size:1.5rem;
+}
+.toolbox button{
+    background-color: transparent;
+    border:1px solid white;
+    border-radius: 10px;
+    outline: none;
+    color: white;
+    font-size:1.5rem;
+    padding:5px 1rem;
+    margin:0 1rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+.toolbox input{
+    cursor: pointer;
+    background-color: transparent;
+    border:none;
+    outline:none;
+    width:60px;
+    height: 40px;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+.toolbox input:hover{
+    background-color: white;
+}
+.toolbox .size{
+    text-align: center;
+    width: 40px;
+    
+}
+.toolbox button:hover{
+    background-color: white;
+    color:black;
+}
+.toolbox button:active{
+    transform: scale(0.98);
+}
+.toolbox .decrease{
+    margin-left: 0;
+}
+.toolbox .clear{
+    font-size:1rem;
+    margin-left: auto;
+    letter-spacing: 1px;
+    margin-right: 0;
+}
