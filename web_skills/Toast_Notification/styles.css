@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Poppins&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins',sans-serif;
+    height: 100vh;
+    background-color: rebeccapurple;
+    color:white;
+}
+.btn{
+    padding:10px 20px;
+    color: rebeccapurple;
+    font-size: 1.1rem;
+    border:none;
+    background-color: white;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin: 10px;
+}
+.btn:hover{
+    background-color: purple;
+    color:white;
+}
+.btn:active{
+    transform: scale(0.98);
+}
+.notif{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content:flex-end;
+    transition:0.3s ease;
+}
+.toast{
+    background-color: white;
+    color:rebeccapurple;
+    padding:10px 20px;
+    margin:10px;
+    border-radius: 10px;
+    transition:0.3s ease;
+}
+.message{
+    position: absolute;
+    background-color: rgba(0,0,0,0.4);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.message p{
+    background-color: rgba(0,0,0,0.3);
+    padding:1rem;
+    width: 50%;
+    color:white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
