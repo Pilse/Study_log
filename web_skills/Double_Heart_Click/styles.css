@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Poppins&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
+}
+
+body{
+    padding:2rem 0;
+    text-align: center;
+    font-family: 'Poppins',sans-serif;
+}
+i{
+    color:red;
+}
+
+.like-me{
+    width:400px;
+    height: 600px;
+    position: relative;
+    cursor: pointer;
+    margin:2rem auto;
+    background-image: url('https://images.unsplash.com/photo-1553179459-4514c0f52f41?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1408&q=80');
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    box-shadow: 0px 0px 50px rgba(0,0,0,0.3),10px 20px 10px rgba(0,0,0,0.1);
+}
+.like-me .fa-heart{
+    position:absolute;
+    transform: translate(-50%,-50%) scale(0);
+    animation: grow 0.5s ease;
+}
+
+@keyframes grow{
+    to{
+        transform: translate(-50%,-50%) scale(10);
+        opacity:0;
+    }
+}
