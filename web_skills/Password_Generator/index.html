@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>project 28</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    
+    <div class="container">
+        <h2>Password Generator</h2>
+        <div class="result-container">
+            <span class="result">&nbsp;</span>
+            <button class="btn copy"> <i class="far fa-clipboard"></i></button>
+        </div>
+        <div class="settings">
+            <div class="setting">
+                <label>Password Length</label>
+                <input type="number" max="20" min="8" value="10" id="length">
+            </div>
+            <div class="setting">
+                <label>Include uppercase letters</label>
+                <input type="checkbox" id="uppercase" checked>
+            </div>
+
+            <div class="setting">
+                <label>Include lowercase letters</label>
+                <input type="checkbox" id="lowercase" checked>
+            </div>
+
+            <div class="setting">
+                <label>Include numbers</label>
+                <input type="checkbox" id="number" checked>
+            </div>
+
+            <div class="setting">
+                <label>Include symbols</label>
+                <input type="checkbox" id="symbol" checked>
+            </div>
+        </div>
+
+        <button class="btn submit">Generate Password</button>
+        
+        
+    </div>
+
+   
+
+    <script src="https://kit.fontawesome.com/525530f0e0.js" crossorigin="anonymous"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Poppins&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding:0;
+    margin:0; 
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    height: 100vh;
+    font-family: 'Poppins',sans-serif;
+}
+.toggle-container{
+    width:300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 1rem;
+}
+h2{
+    margin-bottom: 2rem;
+}
+.toggle{
+    visibility: hidden;
+}
+.label{
+    position: relative;
+    background-color: lightgray;
+    width: 100px;
+    height: 50px;
+    margin-right: 1rem;
+    border-radius: 50px;
+}
+span{
+    width:100px;
+}
+.ball{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    left:2%;
+    width:45px;
+    height: 45px;
+    background-color: white;
+    border-radius: 50%;
+    animation: left 0.3s linear forwards;
+}
+.toggle:checked + .label{
+    background-color: lightgreen;
+}
+.toggle:checked + .label .ball {
+    animation: right 0.3s linear forwards;
+}
+
+@keyframes right{
+    to{
+        left:53%;
+    }
+}
+@keyframes left{
+    from{
+        left:53%;
+    }
+    to{
+        left:2%;
+    }
+}
