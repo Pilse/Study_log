@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Poppins&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding:0;
+    margin:0; 
+}
+
+body{
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'Poppins',sans-serif;
+    background-color: skyblue;
+    padding-top: 3rem;
+}
+.add{
+    position: fixed;
+    top:1rem;
+    right: 1rem;
+    border:none;
+    outline: none;
+    padding: 5px 10px;
+    background-color: rgb(88, 152, 88);
+    color:white;
+    font-size: 1.1rem;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+.add:hover{
+    background-color: green;
+}
+.note{
+    width:400px;
+    height: 400px;
+    background-color: white;
+    margin: 2rem 1rem;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.3) , 10px 20px 10px rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+.tools{
+    background-color: rgb(88, 152, 88);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding:0.5rem;
+    border-radius: 5px 5px 0 0;
+}
+.tools button{
+    background-color: transparent;
+    color:#eee;
+    padding:5px;
+    border:none;
+    outline: none;
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+.tools button:hover{
+    color:white;
+}
+.main{
+    padding:20px;
+}
+.note textarea{
+    font-family: inherit;
+    font-size: 1.1rem;
+    resize: none;
+    width: 100%;
+    height: 400px;
+    padding:20px;
+    border:none;
+    outline: none;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.3) , 10px 20px 10px rgba(0,0,0,0.1);
+}
+
+.hidden{
+    display: none;
+}
