@@ -2,6 +2,7 @@
     "files.associations": {
         "*.jsx": "javascriptreact",
         "utility": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "iostream": "cpp"
     }
 }

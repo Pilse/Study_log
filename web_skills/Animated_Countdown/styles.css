@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Poppins&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding:0;
+    margin:0; 
+}
+
+body{
+    font-family: 'Poppins',sans-serif;
+    height: 100vh;
+}
+
+.counter{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    transition: 0.2s ease;
+}
+.nums{
+    position:relative;
+    width: 150px;
+    height: 70px;
+    overflow: hidden;
+}
+.num{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%) rotate(130deg);
+    transform-origin: bottom center;
+    color: steelblue;
+    font-size: 5rem;
+    text-align: center;
+}
+.num.in{
+    animation: goIn 0.5s ease-in-out;
+}
+.num.out{
+    animation:goOut 0.5s ease-in-out;
+}
+
+.final{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    transition: 0.2s ease;
+    text-align: center;
+}
+.final.hide{
+    transform: translate(-50%, -50%) scale(0);
+}
+.counter.hide{
+    transform: translate(-50%, -50%) scale(0);
+}
+h4{
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.replay{
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+i{
+    color:steelblue;
+    font-size: 4rem;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+i:hover{
+    color:blue;
+    transform:scale(1.1);
+}
+
+@keyframes goIn {
+    0%{
+        transform: translate(-50%, -50%) rotate(130deg);
+    }
+    30%{
+        transform: translate(-50%, -50%) rotate(-20deg);
+    }
+    60%{
+        transform: translate(-50%, -50%) rotate(10deg);
+    }
+    100%{
+        transform: translate(-50%, -50%) rotate(0);
+    }
+}
+@keyframes goOut {
+    0%{
+        transform: translate(-50%, -50%) rotate(0);
+    }
+    60%{
+        transform: translate(-50%, -50%) rotate(10deg);
+    }
+    100%{
+        transform: translate(-50%, -50%) rotate(-130deg);
+    }
+}
