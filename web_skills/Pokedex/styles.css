@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Poppins&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding:0;
+    margin:0; 
+}
+
+body{
+    background:linear-gradient(to right, #d4d3dd, #efefbb);
+    font-family: 'Poppins',sans-serif;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+h1{
+    margin:2rem 0;
+    letter-spacing: 1px;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    margin:1rem auto;
+}
+.img-container{
+    background-color: white;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    margin:auto;
+}
+img{
+    width: 100%;
+}
+.pokemon{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding:1rem;
+    width:200px;
+    height: 350px;
+    background-color: rgb(187, 230, 187);
+    margin:0.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(3,3,3,0.4);
+}
+.pokemon-info{
+    margin-top:1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+.number{
+    background-color: rgba(3,3,3,0.2);
+    padding:3px 10px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+}
+.name{
+    letter-spacing: 1px;
+    margin:1rem 0;
+}
+.type{
+    color:gray;
+}
