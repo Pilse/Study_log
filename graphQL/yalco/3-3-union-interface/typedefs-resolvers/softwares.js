@@ -2,7 +2,7 @@ const { gql } = require('apollo-server')
 const dbWorks = require('../dbWorks.js')
 
 const typeDefs = gql`
-    type Software {
+    type Software implements Tool {
         id: ID!
         used_by: Role!
         developed_by: String!

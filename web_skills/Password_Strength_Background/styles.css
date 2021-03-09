@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Poppins&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding:0;
+    margin:0; 
+}
+
+body{
+    font-family: 'Poppins',sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+}
+.container{ 
+   position: absolute;
+   top:-50px;
+   left:-50px;
+   width: calc(100vw + 100px);
+   height: calc(100vh + 100px);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-image: url('https://images.unsplash.com/photo-1603985529862-9e12198c9a60?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2842&q=80');
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   filter:blur(10px);
+   z-index: -1;
+}
+.login{
+   position: fixed;
+   top:50%;
+   left:50%;
+   transform: translate(-50%,-50%);
+   background-color: white;
+   filter:blur(10);
+   padding:2rem;
+   width:400px;
+   border-radius: 10px;
+}
+.login small {
+    display: flex;
+    justify-content: center;
+    color:gray;
+}
+.login form{
+    display: flex;
+    flex-direction: column;
+    padding:10px 0;
+}
+.login form input{
+    border:solid 1px #eee;
+    padding:10px 5px;
+    margin: 10px 0;
+}
+.login form button{
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+    border:none;
+    outline:none;
+    background-color: black;
+    color: white;
+    padding:10px;
+    border-radius: 5px;
+}

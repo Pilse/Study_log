@@ -4,6 +4,7 @@ const typeDefs = gql`
     type Query {
         equipments: [Equipment]
         supplies: [Supply]
+        equipmentAdvs: [EquipmentAdv]
     }
 `
 
