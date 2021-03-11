@@ -2,29 +2,25 @@
 
 using namespace std;
 
-long long modular(int A, int B, int C)
+long long mul(long a, long b,long c)
 {
-    if(B == 0)
-        return 1;
-    else if (B == 1)
-        return A%C;
-
-    long long temp = modular(A, B/2, C) % C;
-
-    if(B%2==0)
-        return (A%C * A%C)%C;
+    if(b==1)
+        return a%c;
     else
-        return ((A%C*A%C)%C*A)%C;
+    {
+        if(b%2 == 0)
+            return mul(((a%c)*(a%c))%c,b/2,c);
+        else
+            return ((a%c) * mul(((a%c)*(a%c))%c,(b-1)/2,c))%c;
+    }
 }
 
 int main()
 {
-    int A, B, C;
-    int result = 1;
-
-    cin >> A >> B >> C;
-
-    result = modular(A, B, C);
-
-    cout << result << endl;
+    long long a,b,c;
+    cin>>a>>b>>c;
+    
+    long long result = mul(a,b,c);
+    
+    cout<< result << endl;
 }

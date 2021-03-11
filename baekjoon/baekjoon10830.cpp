@@ -9,16 +9,6 @@ long long mtrx2[110][110];
 long long mtrx3[110][110];
 
 
-void update_matrix()
-{
-    for (int i = 0; i < N; i++)
-    {
-        for (int j = 0; j < N; j++)
-        {
-            mtrx1[i][j] = mtrx2[i][j];
-        }
-    }
-}
 void align_matrix(long long matrix1[][110], long long matrix2[][110])
 {
     for (int i = 0; i < N; i++)
@@ -39,7 +29,7 @@ void square_matrix()
         {
             for (int k = 0; k < N; k++)
             {
-                tot = (tot % 1000 + (mtrx2[i][k]%1000) * (mtrx2[k][j]%1000) % 1000) % 1000;
+                tot = ((tot % 1000) + (mtrx2[i][k]%1000) * (mtrx2[k][j]%1000) % 1000) % 1000;
             }
             mtrx3[i][j] = tot;
             tot = 0;
@@ -57,7 +47,7 @@ void mul_matrix(long long matrix[][110])
         {
             for (int k = 0; k < N; k++)
             {
-                tot = (tot % 1000 + (mtrx2[i][k]%1000) * (matrix[k][j]%1000) % 1000) % 1000;
+                tot = ((tot % 1000) + (mtrx2[i][k]%1000) * (matrix[k][j]%1000) % 1000) % 1000;
             }
             mtrx3[i][j] = tot;
             tot = 0;
@@ -69,9 +59,6 @@ void mul_matrix(long long matrix[][110])
 
 void modular(long long B)
 {
-    
-    if(B==0)
-        return;
     if(B==1)
         return;
     if(B%2==0)
@@ -107,7 +94,7 @@ int main()
     {
         for (int j = 0; j < N; j++)
         {
-            cout << mtrx2[i][j]<<" ";
+            cout << mtrx2[i][j]%1000 <<" ";
         }
         cout<<endl;
     }
@@ -115,4 +102,3 @@ int main()
 
 
 }
-
