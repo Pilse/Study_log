@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Muli&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding:0;
+    margin:0; 
+}
+
+body{
+    font-family: 'Muli',sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: ghostwhite;
+}
+.container{
+    background-color: white;
+    padding:2rem;
+    border:1px solid black;
+    max-width: 500px;
+    text-align: center;
+    border-radius: 10px;
+}
+.container p{
+    margin: 2rem 0;
+    color:gray;
+}
+.code-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.code{
+    width:70px;
+    height: 100px;
+    font-size: 60px;
+    margin:1%;
+    text-align: center;
+    border:none;
+    outline: none;
+    box-shadow: 5px 5px 1px rgba(0,0,0,0.1), 0px 0px 10px rgba(0,0,0,0.1);
+}
+.code:focus, .code:valid{
+    box-shadow: 5px 5px 3px rgba(135, 207, 235), 0px 0px 10px rgba(0,0,0,0.2);
+}
+.code::-webkit-outer-spin-button,
+.code::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin:0;
+}
+button{
+    border:none;
+    outline:none;
+    font-size:1.2rem;
+    padding:5px 10px;
+    border-radius: 5px;
+    cursor:not-allowed;
+    color:white;
+    box-shadow: 3px 3px 1px rgba(0,0,0,0.1);
+}
