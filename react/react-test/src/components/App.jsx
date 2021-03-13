@@ -1,9 +1,9 @@
 import React from 'react';
 
-function App () {
+function App ({children}) {
     return( 
         <div>
-            <h1>hiiii</h1>
+            <h1>123{children}</h1>
         </div>
     );
 }

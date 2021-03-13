@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Muli&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding:0;
+    margin:0; 
+}
+
+body{
+    font-family: 'Muli',sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(240, 235, 225);
+}
+.pannel-container{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 2rem 3rem;
+    width: 450px;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    border-radius: 30px;
+}
+.pannel-container strong{
+    line-height: 20px;
+}
+
+.ratings-container{
+    display: flex;
+    justify-content: space-around;
+    margin:3rem 0;
+}
+.rating{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding:10px 25px;
+    margin:0 10px;
+    cursor: pointer;
+}
+.rating small{
+    margin-top:1rem;
+    color:gray;
+}
+.rating img{
+    width:60px;
+}
+.rating:hover,
+.rating.active{
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+.rating:hover small,
+.rating.active small{
+    color:black;
+}
+button{
+    border: none;
+    outline:none;
+    background-color: black;
+    color: white;
+    padding:10px 25px;
+    width:150px;
+    margin: 0 auto;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+button:active{
+    transform: scale(0.95);
+}
+.fa-heart{
+    color:red;
+    font-size: 2rem;
+    margin-bottom:1rem;
+}
