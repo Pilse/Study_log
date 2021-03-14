@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Poppins&display=swap');
+
+.search{
+    width:450px;
+    margin:2rem auto;
+}
+
+.search input{
+    width: 100%;
+    background-color: rebeccapurple;
+    padding:1rem;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    color:white;
+    box-shadow: 0 5px 5px rgba(84, 84, 154, 0.3), 0px 10px 40px rgba(0,0,0,0.5);
+}
+.search input::placeholder{
+    color: #bbb;
+    font-family: inherit;
+}
+.card{
+    margin:0 auto 1rem;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    background-color: rebeccapurple;
+    padding:1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px rgba(84, 84, 154, 0.3), 0px 10px 40px rgba(0,0,0,0.5);
+}
+
+.card .avatar{
+    height: 150px;
+    width:150px;
+    border: 8px solid #413c69;
+    border-radius: 50%;
+}
+.card .user-info p{
+    margin: 1.5rem 0;
+    color:lightgray;
+}
+.card .user-info ul{
+    display: flex;
+    justify-content: flex-start;
+    list-style-type: none;
+    padding: 0;
+}
+.card .user-info ul li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.8rem;
+}
+.card .user-info ul li strong{
+    font-size: 0.9rem;
+    margin-left: 0.25rem;
+    color:lightgray
+}
+.card .repos{
+    display: flex;
+    flex-wrap: wrap;
+    padding:1.5rem 0;
+}
+.card .repos .repo{
+    color: white;
+    background-color: #413c69;
+    padding:0.25rem 0.5rem;
+    border:none;
+    outline: none;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}

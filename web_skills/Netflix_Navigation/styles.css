@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Muli&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding:0;
+    margin:0; 
+}
+
+body{
+    font-family: 'Muli',sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:rgb(240, 235, 225);
+}
+.main{
+    animation: main 3s;
+}
+.logo{
+    width:200px;
+}
+.nav-btn{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 2rem;
+    cursor: pointer;
+    opacity: 0;
+    animation: btn 3s forwards;
+}
+.nav-btn.open{
+    position: absolute;
+    top:1rem;
+    left:1rem;
+    transition: 0.3s ease;
+}
+.nav-btn.open:hover{
+    transform: scale(1.1);
+}
+.nav{
+    position:fixed;
+    top:0;
+    left:0;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition:  0.3s ease;
+}
+.nav.visible{
+    transform: translateX(0);
+}
+.nav.red{
+    background-color: red;
+    width:60%;
+    max-width: 450px;
+    min-width: 350px;
+    transition-delay: 0.4s;
+    outline: none;
+}
+.nav.red.visible{
+    transition-delay: 0s;
+}
+
+.nav.black{
+    background-color: black;
+    width:95%;
+    transition-delay: 0.2s;
+}
+.nav.black.visible{
+    transition-delay: 0.2s;
+}
+
+
+.nav.white{
+    background-color: white;
+    width:95%;
+    padding:2rem;
+    position: relative;
+    transition-delay: 0s;
+}
+.nav.white.visible{
+    transition-delay: 0.4s;
+}
+.nav.white .logo{
+   display: flex;
+   justify-content: center;
+}
+
+.nav-btn.close{
+    color:rgba(128, 128, 128, 0.488);
+    position: absolute;
+    font-size: 1.5rem;
+    top:2.5rem;
+    right: 2rem;
+    transition: 0.3s;
+}
+.nav-btn.close:hover{
+    color:black;
+    transform: rotateZ(90deg);
+}
+.white ul{
+    list-style-type: none;
+    margin:2rem 0;
+}
+.white li{
+    margin: 2rem 0;
+    text-transform: uppercase;
+}
+.white li ul{
+    margin:auto 1rem;
+}
+.white a{
+    text-decoration: none;
+    color:black;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+.white a:hover{
+    color:red;
+}
+
+@keyframes main{
+    0%{
+        width: 80%;
+    }
+    30%,40%{
+        width:90%
+    }
+    40%,100%{
+        width:200px;
+    }
+}
+@keyframes btn{
+    to{
+        opacity: 1;
+    }
+}
