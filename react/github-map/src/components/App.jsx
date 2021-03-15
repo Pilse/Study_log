@@ -7,6 +7,7 @@ function App() {
     <div className="container">
      <GithubUser />
      <GithubMindmap />
+    
     </div>
   );
 }

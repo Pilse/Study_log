@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Poppins:wght@200;400&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding:0;
+    margin:0; 
+}
+
+body{
+    font-family: 'Poppins',sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.testimonial-container{
+    background-color: #23689b;
+    color: white;
+    padding:4rem;
+    max-width: 760px;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.progress-bar{
+    height: 3px;
+    background-color: white;
+    margin: 0 0 1rem 0;
+    animation: grow 10s linear infinite;
+    transform-origin: left;
+}
+.fa-quote{
+    color: rgba(255,255,255,0.3);
+    font-size: 2rem;
+    position: absolute;
+    top:10px;
+}
+.fa-quote-left{
+    left:-50px;
+}
+.fa-quote-right{
+    right: -50px;
+}
+.testimonial-container p{
+    text-align: justify;
+    line-height: 1.7;
+}
+.testimonial-container .user{
+    display: flex;
+    margin-top: 1.5rem;
+}
+.user-img{
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+}
+.user-info{
+    margin-left:1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    letter-spacing: 1px;
+}
+.user-info small{
+    color:lightgray;
+}
+.animation{
+    animation: left 10s ease infinite;
+}
+
+@keyframes grow{
+    0%{
+        transform: scaleX(0);
+    }
+    
+}
+
+@keyframes left{
+    0%{
+        transform: translateX(100%);
+    }
+    5%{
+        transform: translateX(-10%);
+    }
+    10%,92%{
+        transform: translateX(0);
+    }
+    95%{
+        transform: translateX(10%);
+    }
+    100%{
+        transform: translateX(-150%);
+    }
+}
