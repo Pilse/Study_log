@@ -55,6 +55,12 @@ function BurgerBuilder() {
     function purchaseHandler() {
         setPurchasing(true);
     }
+    function purchaseCancleHandler() {
+        setPurchasing(false);
+    }
+    function purchaseContinueHandler() {
+        alert('You continue');
+    }
 
     const disabledInfo = {
         ...ingredients
@@ -66,8 +72,13 @@ function BurgerBuilder() {
 
     return(
         <>
-            <Modal show={purchasing}>
-                <OrderSummary ingredients={ingredients}/>
+            <Modal show={purchasing} modalClosed={purchaseCancleHandler}>
+                <OrderSummary 
+                    ingredients={ingredients}
+                    purchaseCancled={purchaseCancleHandler}
+                    purchaseContinued={purchaseContinueHandler}
+                    price={totalPrice}
+                    />
             </Modal>
             <Burger ingredients={ingredients}/>
             <BurgerControlls 

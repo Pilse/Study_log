@@ -12,7 +12,6 @@ void calc(ll n, ll k)
 {
     ll left = 1;
     ll right = k;
-    int flag = 0;
     
     while(left<=right)
     {
@@ -20,24 +19,11 @@ void calc(ll n, ll k)
         int cnt = 0;
         
         for(int i = 1;i<=n;i++)
-        {
-            for(int j=1;j<=n;j++)
-            {
-                if(mid >= i*j)
-                    cnt++;
-                if(cnt >= k)
-                {
-                    flag = 1;
-                    break;
-                }
-            }
-            if(flag)
-                break;
-        }
+            cnt += min(mid/i,n);
         
         if(cnt >= k)
         {
-            result = max(result,mid);
+            result = mid;
             right = mid - 1;
         }
         else
