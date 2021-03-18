@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './GithubUser.css'
-import {makeMindMap} from '../GithubMindmap/GithubMindmap';
+import GithubMindmap from '../GithubMindmap/GithubMindmap';
 
 const APIURL = 'https://api.github.com/users/';
 
-function GithubUser() {
+function GithubUser(props) {
 
   const [userName, setUserName] = useState('');
   const [showUser, setShowUser] = useState(false);
@@ -23,7 +23,7 @@ function GithubUser() {
     try {
       const response = await fetch(APIURL + userName + '/repos?sort=created');
       const repos = await response.json();
-      
+
       setCard(
         <div className="card">
           <div className="user-photo">
@@ -49,8 +49,6 @@ function GithubUser() {
         </div>
       );
 
-      makeMindMap(userName);
-
     } catch (err) {
       makeErrCard('repos not found');
     }
@@ -60,6 +58,7 @@ function GithubUser() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
+      
       const response = await fetch(APIURL + userName);
       const data = await response.json();
 
@@ -82,10 +81,13 @@ function GithubUser() {
             type="text"
             placeholder="Search a Github User"
             value={userName}
-            onChange={(e) => { setUserName(e.target.value) }} />
+            onChange={(e) => { setShowUser(false); setUserName(e.target.value) }} />
         </form>
+        <div className="container">
+          {showUser ? card : null}
+          {showUser ? <GithubMindmap user={userName} /> : null}
+        </div>
       </div>
-      {showUser ? card : null}
     </>
   );
 }

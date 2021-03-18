@@ -1,6 +1,8 @@
 #cy{
-    width: 600px;
-    height: 600px;
-    margin: auto;
-    background-color: rebeccapurple;
+    width: 450px;
+    height: 450px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.3);
+    margin:1rem;
 }
