@@ -7,9 +7,9 @@ const APIURL = 'https://api.github.com/users/';
 function GithubUser(props) {
 
   const [userName, setUserName] = useState('');
+  const [submittedUser,setsubmittedUser] = useState('');
   const [showUser, setShowUser] = useState(false);
   const [card, setCard] = useState('');
-  let arr;
 
   function makeErrCard(msg) {
     setCard(
@@ -38,7 +38,7 @@ function GithubUser(props) {
               <li>{user.public_repos} <strong>Repos</strong></li>
             </ul>
             <div className="repos">
-              {repos.slice(0, 10).map((repo, idx) =>
+              {repos.slice(0, 20).map((repo, idx) =>
                 <a key={repo.name + idx} href={repo.html_url} className="repo" target="_blank">
                   {repo.name}
                 </a>
@@ -58,11 +58,12 @@ function GithubUser(props) {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      
+
       const response = await fetch(APIURL + userName);
       const data = await response.json();
 
       makeCard(data);
+      setsubmittedUser(data.login);
 
       setShowUser(true);
       setUserName('');
@@ -81,11 +82,11 @@ function GithubUser(props) {
             type="text"
             placeholder="Search a Github User"
             value={userName}
-            onChange={(e) => { setShowUser(false); setUserName(e.target.value) }} />
+            onChange={(e) => {setUserName(e.target.value) }} />
         </form>
         <div className="container">
           {showUser ? card : null}
-          {showUser ? <GithubMindmap user={userName} /> : null}
+          {showUser ? <GithubMindmap user={submittedUser} /> : null}
         </div>
       </div>
     </>
