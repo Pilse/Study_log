@@ -1,22 +1,24 @@
-import React from 'react';
-import './Modal.css';
-import Backdrop from '../Backdrop/Backdrop';
+import React from "react";
+import "./Modal.css";
+import Backdrop from "../Backdrop/Backdrop";
+
+const showIsEqual = (prevModal, nextModal) => prevModal.show === nextModal.show;
 
 function modal(props) {
-    return(
-        <>
-        <Backdrop show={props.show} clicked={props.modalClosed} />
-        <div 
-            className="Modal"
-            style={{
-                transform: props.show? 'translateY(0)':'translateY(-100vh)',
-                opacity: props.show? '1':'0'
-            }}
-            >
-            {props.children}
-        </div>
-        </>
-    );
+  return (
+    <>
+      <Backdrop open={props.show} clicked={props.modalClosed} />
+      <div
+        className="Modal"
+        style={{
+          transform: props.show ? "translateY(0)" : "translateY(-100vh)",
+          opacity: props.show ? "1" : "0",
+        }}
+      >
+        {props.children}
+      </div>
+    </>
+  );
 }
 
-export default modal;
+export default React.memo(modal, showIsEqual);

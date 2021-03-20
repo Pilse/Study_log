@@ -1,18 +1,20 @@
-import React from 'react';
-import './Toolbar.css'
-import Logo from '../../Logo/Logo';
-import NavigationItems from '../NavigationItems/NavigationItems';
+import React from "react";
+import "./Toolbar.css";
+import Logo from "../../Logo/Logo";
+import NavigationItems from "../NavigationItems/NavigationItems";
 
 function toolbar(props) {
-    return(
+  return (
     <header className="Toolbar">
-        <div>MENU</div>
-        <Logo />
-        <nav>
-            <NavigationItems />
-        </nav>
+      <button className="MenuBtn" onClick={props.showSideDrawer}>
+        ≡
+      </button>
+      <Logo />
+      <nav className="DesktopOnly">
+        <NavigationItems />
+      </nav>
     </header>
-    );
+  );
 }
 
-export default toolbar
+export default toolbar;
