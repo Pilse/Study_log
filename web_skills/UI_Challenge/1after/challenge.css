@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background: ghostwhite;
+  color: #4a68d2;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+section {
+  background-color: white;
+  margin-top: 3rem;
+  border-left: 0.7rem solid #7289da;
+  padding: 2rem 3rem;
+  width: 60%;
+  min-width: 350px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 2rem;
+  letter-spacing: 1;
+  text-transform: uppercase;
+}
+p {
+  color: gray;
+  margin: 0.5rem 0 2rem;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  color: #7289da;
+  margin-bottom: 0.7rem;
+}
+
+input[type="text"],
+textarea {
+  margin-bottom: 1.5rem;
+  display: block;
+  padding: 0.5rem;
+  width: 80%;
+  background: white;
+  border: none;
+  border-bottom: 1px solid #bbeeff;
+  outline: 0;
+  color: black;
+  transition: 0.3s ease;
+}
+
+label:hover {
+  color: #4a68d2;
+}
+input[type="text"]:focus,
+textarea:focus {
+  border-bottom: 1px solid #5588ff;
+}
+
+input[type="text"]:hover,
+textarea:hover {
+  border-bottom: 1px solid #5588ff;
+}
+
+input[type="submit"] {
+  transition: 0.3s ease;
+  cursor: pointer;
+  background: #99aab5;
+  border: none;
+  outline: none;
+  color: white;
+  font-weight: bold;
+  padding: 0.8rem 2rem;
+  border-radius: 2rem;
+  font-size: 1rem;
+}
+input[type="submit"]:hover {
+  background: green;
+}
+
+/* Improvements */

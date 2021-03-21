@@ -3,6 +3,8 @@
         "*.jsx": "javascriptreact",
         "utility": "cpp",
         "algorithm": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "vector": "cpp",
+        "memory": "cpp"
     }
 }

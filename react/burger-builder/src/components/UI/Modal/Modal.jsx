@@ -2,7 +2,11 @@ import React from "react";
 import "./Modal.css";
 import Backdrop from "../Backdrop/Backdrop";
 
-const showIsEqual = (prevModal, nextModal) => prevModal.show === nextModal.show;
+const showIsEqual = (prevModal, nextModal) => {
+  return (
+    prevModal.show === nextModal.show && prevModal.loading === nextModal.loading
+  );
+};
 
 function modal(props) {
   return (

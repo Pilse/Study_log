@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+}
+
+aside {
+  background: #1d3154;
+  width: 5%;
+  height: 100vh;
+  margin-right: 1rem;
+}
+
+h1 {
+  padding: 1rem;
+  color: #1d3154;
+  margin: 2rem 2rem 2rem 0;
+  font-size: 4rem;
+  text-transform: uppercase;
+  background-color: white;
+  border-right: 5px solid #1d3154;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+main {
+  width: 50%;
+  max-width: 600px;
+  background-color: ghostwhite;
+  min-width: 400px;
+}
+
+.content {
+  background: white;
+  margin-right: 2rem;
+  padding: 2rem;
+  position: relative;
+  border-radius: 5px 0 0 0;
+  min-width: 350px;
+  color: #1d3154;
+  font-weight: bold;
+  border-right: 5px solid #1d3154;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+h3 {
+  margin: 0 auto 1rem;
+  font-size: 1.5rem;
+  color: #1d31548f;
+  text-transform: uppercase;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  letter-spacing: 1.5px;
+}
+
+li span:first-of-type {
+  color: #333;
+}
+
+li span:last-of-type {
+  color: lightgray;
+}
+
+/* Improvements */
