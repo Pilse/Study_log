@@ -25,13 +25,10 @@ h1 {
 }
 p {
   font-size: 1.5rem;
-  margin: 0.5rem 0;
+  margin: 1rem 0;
 }
 i {
   font-size: 5rem;
-}
-.weather--info-date-icon i {
-  color: orange;
 }
 sup {
   font-size: 0.9rem;
@@ -55,4 +52,34 @@ sup {
 }
 .weather--info-date {
   border-left: 3px solid white;
+}
+
+.weather--temp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1rem;
+}
+.weather--temp-day {
+  margin: 2rem;
+  text-align: center;
+}
+.weather--temp-day p {
+  margin-bottom: 1rem;
+}
+
+.fa-sun {
+  color: orange;
+}
+.fa-cloud {
+  color: lightgray;
+}
+.fa-cloud-sun {
+  color: rgba(207, 213, 195, 0.516);
+}
+.fa-cloud-sun-rain {
+  color: skyblue;
+}
+.fa-cloud-rain {
+  color: rgb(60, 60, 242);
 }

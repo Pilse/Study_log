@@ -7,14 +7,15 @@ class FullPost extends Component {
     loadedPost: null,
   };
 
-  async componentDidUpdate() {
-    if (this.props.id) {
+  async componentDidMount() {
+    if (this.props.match.params.id) {
       if (
         !this.state.loadedPost ||
         (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)
       ) {
         const res = await fetch(
-          "https://jsonplaceholder.typicode.com/posts/" + this.props.id
+          "https://jsonplaceholder.typicode.com/posts/" +
+            this.props.match.params.id
         );
         const data = await res.json();
         console.log(data);
@@ -24,7 +25,8 @@ class FullPost extends Component {
   }
   deletePostHandler = async () => {
     const res = await fetch(
-      "https://jsonplaceholder.typicode.com/posts/" + this.props.id,
+      "https://jsonplaceholder.typicode.com/posts/" +
+        this.props.match.params.id,
       {
         method: "DELETE",
         headers: {
@@ -37,7 +39,7 @@ class FullPost extends Component {
 
   render() {
     let post = <p style={{ textAlign: "center" }}>Please select a Post!</p>;
-    if (this.props.id) {
+    if (this.props.match.params.id) {
       post = <p style={{ textAlign: "center" }}>loading!</p>;
     }
     if (this.state.loadedPost) {
