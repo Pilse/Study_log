@@ -1,10 +1,14 @@
 import React, { Component } from "react";
-import { Route, NavLink, Switch } from "react-router-dom";
+import { Route, NavLink, Redirect, Switch } from "react-router-dom";
 import Posts from "../Blog/Posts/Posts";
-import NewPost from "./NewPost/NewPost";
-
+//import NewPost from "./NewPost/NewPost";
+import asyncComponent from "../../hoc/asyncCompnent";
 import "./Blog.css";
-import FullPost from "../Blog/FullPost/FullPost";
+
+const AsyncNewPost = asyncComponent(() => {
+  return import("./NewPost/NewPost");
+});
+// react 16.6 => const Posts = React.lazy(()=>import('./containers/Posts'))
 
 class Blog extends Component {
   render() {
@@ -14,8 +18,8 @@ class Blog extends Component {
           <nav>
             <ul>
               <li>
-                <NavLink to="/" exact activeClassName="active">
-                  Home
+                <NavLink to="/posts" exact activeClassName="active">
+                  Posts
                 </NavLink>
               </li>
               <li>
@@ -33,10 +37,10 @@ class Blog extends Component {
             </ul>
           </nav>
         </header>
-        <Route path="/" exact component={Posts} />
         <Switch>
-          <Route path="/new-post" exact component={NewPost} />
-          <Route path="/:id" exact component={FullPost} />
+          <Route path="/new-post" exact component={AsyncNewPost} />
+          <Route path="/posts" component={Posts} />
+          <Route render={() => <h1>Not found</h1>} />
         </Switch>
       </div>
     );

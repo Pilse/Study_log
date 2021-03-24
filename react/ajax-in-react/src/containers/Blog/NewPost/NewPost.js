@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect, Reidrect } from "react-router-dom";
 
 import "./NewPost.css";
 
@@ -7,8 +8,10 @@ class NewPost extends Component {
     title: "",
     content: "",
     author: "Max",
+    submitted: false,
   };
   componentDidMount() {
+    // if (unauth) this.props.history.replace('/posts');
     console.log(this.props);
   }
 
@@ -26,12 +29,18 @@ class NewPost extends Component {
       },
     });
     const data = await res.json();
-    console.log(data);
+    this.props.history.replace("/posts");
+    //this.setState({ submitted: true });
   };
 
   render() {
+    let redirect = null;
+    if (this.state.submitted) {
+      redirect = <Redirect to="/posts/" />;
+    }
     return (
       <div className="NewPost">
+        {redirect}
         <h1>Add a Post</h1>
         <label>Title</label>
         <input

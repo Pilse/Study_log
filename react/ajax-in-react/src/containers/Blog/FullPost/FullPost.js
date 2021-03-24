@@ -7,11 +7,19 @@ class FullPost extends Component {
     loadedPost: null,
   };
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.loadData();
+  }
+  componentDidUpdate() {
+    this.loadData();
+  }
+
+  async loadData() {
     if (this.props.match.params.id) {
       if (
         !this.state.loadedPost ||
-        (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)
+        (this.state.loadedPost &&
+          this.state.loadedPost.id !== +this.props.match.params.id)
       ) {
         const res = await fetch(
           "https://jsonplaceholder.typicode.com/posts/" +
