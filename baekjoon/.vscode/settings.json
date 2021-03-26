@@ -5,6 +5,7 @@
         "algorithm": "cpp",
         "iostream": "cpp",
         "vector": "cpp",
-        "memory": "cpp"
+        "memory": "cpp",
+        "string": "cpp"
     }
 }

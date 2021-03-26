@@ -1,83 +1,89 @@
 #include <iostream>
-#include <queue>
-#include <string>
-#include <stack>
+#include <deque>
+#include <cstring>
+#include <cstdlib>
 
 using namespace std;
 
-queue<int> q;
-
-void reverseQueue()
-{
-    stack<int> st;
-
-    while (!q.empty())
-    {
-        st.push(q.front());
-        q.pop();
-    }
-    while (!st.empty())
-    {
-        q.push(st.top());
-        st.pop();
-    }
-}
-
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
 
     int t;
-    int n;
-    string str;
-    string num;
 
-    cin >> t;
+    scanf("%d", &t)
 
-    for (int i = 0; i < t; i++)
+        for (int i = 0; i < t; i++)
     {
+        string str;
+        int num;
+        char arr[500000];
+        char temp[1000];
+        int j = 0;
+        int flag = 1;
+        deque<int> dq;
+
         cin >> str;
-        cin >> n;
-        cin >> num;
+        scanf("%d", &num);
+        scanf("%s", arr);
 
-        int flag = 0;
-
-        for (int i = 1; i < num.length(); i += 2)
+        for (int i = 1; i < strlen(arr); i++)
         {
-            q.push(num[i] - '0');
+            if (arr[i] == ',' || arr[i] == ']')
+            {
+                temp[j] = arr[i];
+                if (j != 0)
+                    dq.push_back(atoi(temp));
+                j = 0;
+            }
+            else
+                temp[j++] = arr[i];
         }
-
+        int cnt = 0;
         for (int i = 0; i < str.length(); i++)
         {
-            if (str[i] == 'R')
-                reverseQueue();
-            else if (str[i] == 'D')
-            {
-                if (q.size() == 0)
-                {
-                    flag = 1;
-                    cout << "error"
-                         << "\n";
-                    break;
-                }
-                else
-                    q.pop();
-            }
+            if (str[i] == 'D')
+                cnt++;
         }
-        if (!flag)
+        if (cnt > dq.size())
+            printf("error\n");
+        else
         {
-            cout << "[";
-            int qSize = q.size();
-            for (int i = 0; i < qSize; i++)
+            for (int i = 0; i < str.length(); i++)
             {
-                cout << q.front();
-                if (i != qSize - 1)
-                    cout << ",";
-                q.pop();
+                if (str[i] == 'R')
+                    flag = (flag + 1) % 2;
+                if (str[i] == 'D')
+                {
+                    if (flag)
+                        dq.pop_front();
+                    else
+                        dq.pop_back();
+                }
             }
-            cout << "]"
-                 << "\n";
+            if (i == str.length() - 1)
+            {
+                int s = dq.size();
+                printf("[");
+                for (int l = 0; l < s; l++)
+                {
+                    if (flag)
+                    {
+                        printf("%d", dq.front());
+                        if (j != dq.size() - 1)
+                            printf(",");
+                        dq.pop_front();
+                    }
+                    else
+                    {
+                        printf("%d", dq.back());
+                        if (j != dq.size() - 1)
+                            printf(",");
+                        dq.pop_back();
+                    }
+                }
+                printf("]\n");
+            }
         }
     }
+}
 }

@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Mulish:wght@200;400&family=Poppins:wght@100;200;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+  --primary-color: #014d4e;
+  --secondary-color: #ff9408;
+  --secondary-color-m: #ff94088e;
+  --tertiary-color: #017374;
+  --tertiary-color-m: #01727498;
+}
+
+body {
+  font-family: "Merriweather";
+  line-height: 1.8;
+  display: flex;
+}
+a,
+a:visited {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+/* side */
+
+aside#side-nav {
+  position: st;
+  top: 0;
+  left: 0;
+  height: 100vh;
+}
+.side-nav__content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--primary-color);
+}
+.side-nav__content--logo img {
+  width: calc(3vh + 3vw);
+  object-fit: cover;
+}
+.side-nav__content--social {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.side-nav__content--social a i {
+  font-size: calc(1rem + 0.66667vw);
+  color: #fff;
+  padding-bottom: calc(2rem + 0.6667vw);
+  transition: color 0.3s ease-in-out;
+}
+.side-nav__content--social a i:hover {
+  color: var(--secondary-color);
+}
+
+/* main */
+
+main {
+  flex: 1;
+}
+#header {
+  background-color: var(--secondary-color);
+  height: calc(3vw + 3vh);
+  z-index: 2;
+}
+#header__main-nav {
+  height: 100%;
+}
+.header__main-nav--links {
+  background-color: steelblue;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  list-style-type: none;
+}
+.header__main-nav--links li {
+  padding-right: 3vw;
+}
+.header__main-nav--links li a {
+  position: relative;
+  padding: 0.2rem 0.6rem;
+  font-size: calc(0.7rem + 0.66667vw);
+}

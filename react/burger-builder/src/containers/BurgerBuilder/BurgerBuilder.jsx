@@ -4,6 +4,7 @@ import BurgerControlls from "../../components/Burger/BurgerControls/BurgerContro
 import Modal from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import { useHistory } from "react-router";
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
@@ -31,6 +32,7 @@ function BurgerBuilder() {
   const [purchasable, setPurchasable] = useState(true);
   const [purchasing, setPurchasing] = useState(false);
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
   function addIngredinetHandler(type) {
     const oldCount = ingredients[type];
@@ -69,37 +71,48 @@ function BurgerBuilder() {
   }
   async function purchaseContinueHandler() {
     //alert('You continue');
-    setLoading(true);
-    const order = {
-      ingredients,
-      price: totalPrice,
-      customer: {
-        name: "pilse Lee",
-        address: {
-          street: "Street 1",
-          zipCode: "12345",
-          country: "Korea",
-        },
-        email: "test@test.com",
-      },
-      deliveryMethod: "fastest",
-    };
-    try {
-      const res = await fetch(URL + "/orders.json", {
-        method: "POST",
-        body: JSON.stringify(order),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await res.json();
-      setLoading(false);
-      setPurchasing(false);
-    } catch (err) {
-      setLoading(false);
-      setPurchasing(false);
-      console.log(err);
+    // setLoading(true);
+    // const order = {
+    //   ingredients,
+    //   price: totalPrice,
+    //   customer: {
+    //     name: "pilse Lee",
+    //     address: {
+    //       street: "Street 1",
+    //       zipCode: "12345",
+    //       country: "Korea",
+    //     },
+    //     email: "test@test.com",
+    //   },
+    //   deliveryMethod: "fastest",
+    // };
+    // try {
+    //   const res = await fetch(URL + "/orders.json", {
+    //     method: "POST",
+    //     body: JSON.stringify(order),
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   });
+    //   const data = await res.json();
+    //   setLoading(false);
+    //   setPurchasing(false);
+    // } catch (err) {
+    //   setLoading(false);
+    //   setPurchasing(false);
+    //   console.log(err);
+    // }
+    const queryParams = [];
+    for (let i in ingredients) {
+      queryParams.push(
+        encodeURIComponent(i) + "=" + encodeURIComponent(ingredients[i])
+      );
     }
+    const queryString = queryParams.join("&");
+    history.push({
+      pathname: "/checkout",
+      search: "?" + queryString,
+    });
   }
 
   const disabledInfo = {
