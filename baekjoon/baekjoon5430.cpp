@@ -1,89 +1,86 @@
 #include <iostream>
 #include <deque>
 #include <cstring>
-#include <cstdlib>
+#include <string>
 
 using namespace std;
 
 int main()
 {
-
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
     int t;
 
-    scanf("%d", &t)
+    cin >> t;
 
-        for (int i = 0; i < t; i++)
+    for (int i = 0; i < t; i++)
     {
         string str;
         int num;
-        char arr[500000];
-        char temp[1000];
+        string arr;
+        string temp;
         int j = 0;
         int flag = 1;
         deque<int> dq;
 
         cin >> str;
-        scanf("%d", &num);
-        scanf("%s", arr);
+        cin >> num;
+        cin >> arr;
 
-        for (int i = 1; i < strlen(arr); i++)
+        for (int i = 1; i < arr.length(); i++)
         {
             if (arr[i] == ',' || arr[i] == ']')
             {
                 temp[j] = arr[i];
                 if (j != 0)
-                    dq.push_back(atoi(temp));
+                    dq.push_back(stoi(temp));
+
                 j = 0;
             }
             else
                 temp[j++] = arr[i];
         }
-        int cnt = 0;
+
         for (int i = 0; i < str.length(); i++)
         {
+            if (str[i] == 'R')
+                flag = (flag + 1) % 2;
             if (str[i] == 'D')
-                cnt++;
-        }
-        if (cnt > dq.size())
-            printf("error\n");
-        else
-        {
-            for (int i = 0; i < str.length(); i++)
             {
-                if (str[i] == 'R')
-                    flag = (flag + 1) % 2;
-                if (str[i] == 'D')
+                if (dq.empty())
                 {
-                    if (flag)
-                        dq.pop_front();
-                    else
-                        dq.pop_back();
+                    cout << "error" << '\n';
+                    break;
                 }
+                if (flag)
+                    dq.pop_front();
+                else
+                    dq.pop_back();
             }
+
             if (i == str.length() - 1)
             {
                 int s = dq.size();
-                printf("[");
+                cout << "[";
                 for (int l = 0; l < s; l++)
                 {
                     if (flag)
                     {
-                        printf("%d", dq.front());
+                        cout << dq.front();
                         if (j != dq.size() - 1)
-                            printf(",");
+                            cout << ",";
                         dq.pop_front();
                     }
                     else
                     {
-                        printf("%d", dq.back());
+                        cout << dq.back();
                         if (j != dq.size() - 1)
-                            printf(",");
+                            cout << ",";
                         dq.pop_back();
                     }
                 }
-                printf("]\n");
+                cout << "]" << '\n';
             }
         }
     }
-}
 }

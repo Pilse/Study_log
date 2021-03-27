@@ -1,13 +1,15 @@
-import React from 'react';
-import './NavigationItem.css';
-
+import React from "react";
+import "./NavigationItem.css";
+import { NavLink } from "react-router-dom";
 
 function navigationItem(props) {
-    return(
-        <li className="NavigationItem">
-            <a href={props.link} className={props.active ? 'active' : null}>{props.children}</a>
-        </li>
-    )
+  return (
+    <li className="NavigationItem">
+      <NavLink to={props.link} exact>
+        {props.children}
+      </NavLink>
+    </li>
+  );
 }
 
 export default navigationItem;

@@ -71,43 +71,13 @@ function BurgerBuilder() {
   }
   async function purchaseContinueHandler() {
     //alert('You continue');
-    // setLoading(true);
-    // const order = {
-    //   ingredients,
-    //   price: totalPrice,
-    //   customer: {
-    //     name: "pilse Lee",
-    //     address: {
-    //       street: "Street 1",
-    //       zipCode: "12345",
-    //       country: "Korea",
-    //     },
-    //     email: "test@test.com",
-    //   },
-    //   deliveryMethod: "fastest",
-    // };
-    // try {
-    //   const res = await fetch(URL + "/orders.json", {
-    //     method: "POST",
-    //     body: JSON.stringify(order),
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   });
-    //   const data = await res.json();
-    //   setLoading(false);
-    //   setPurchasing(false);
-    // } catch (err) {
-    //   setLoading(false);
-    //   setPurchasing(false);
-    //   console.log(err);
-    // }
     const queryParams = [];
     for (let i in ingredients) {
       queryParams.push(
         encodeURIComponent(i) + "=" + encodeURIComponent(ingredients[i])
       );
     }
+    queryParams.push("price=" + totalPrice);
     const queryString = queryParams.join("&");
     history.push({
       pathname: "/checkout",
