@@ -4,6 +4,7 @@ import Button from "../../../components/UI/Button/Button";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import "./ContactData.css";
 import Input from "../../../components/UI/Input/Input";
+import { connect } from "react-redux";
 
 const URL = "https://react-my-burger-9e521-default-rtdb.firebaseio.com";
 
@@ -24,8 +25,8 @@ function ContactData(props) {
     e.preventDefault();
     setLoading(true);
     const sumittedOrder = {
-      ingredients: props.ingredients,
-      price: props.price,
+      ingredients: props.ings,
+      price: props.totalPrice,
       customer: {
         name: order.name,
         address: {
@@ -127,4 +128,11 @@ function ContactData(props) {
   );
 }
 
-export default ContactData;
+const stateToProps = (state) => {
+  return {
+    ings: state.ingredients,
+    totalPrice: state.totalPrice,
+  };
+};
+
+export default connect(stateToProps, null)(ContactData);

@@ -134,21 +134,22 @@ main {
   height: calc(25rem);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   animation: hero 0.9s ease-in-out;
   border-radius: 0 10px 10px 0;
+  min-width: 40%;
 }
 .showcase__content--title {
-  font-size: calc(4rem);
+  font-size: calc(3rem);
   color: #fff;
-  letter-spacing: calc(3px + 0.3vw);
+  letter-spacing: 4px;
 }
 .showcase__content--para,
 .showcase__content--link {
   font-family: "Mulsih";
 }
 .showcase__content--para {
-  font-size: calc(0.8rem + 1vw);
+  font-size: 1.8rem;
   letter-spacing: 1.5px;
   color: #ccc;
 }
@@ -196,12 +197,93 @@ main {
     0% 80%,
     0% 20%
   );
+  opacity: 0;
+}
+.work__card img.show {
+  animation: hero 0.9s ease-in-out forwards;
+}
+
+/* section */
+
+#about-me {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 2rem;
+  background-color: var(--secondary-color);
+}
+.about-me__img,
+.about-me__content {
+  flex-basis: 30rem;
+  padding: 2rem;
+  flex: 1;
+  opacity: 0;
+}
+.about-me__img.show,
+.about-me__content.show {
+  animation: hero2 0.9s ease-in-out forwards;
+}
+.about-me__img {
+  text-align: center;
+}
+
+.about-me__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-width: 350px;
+  max-width: 500px;
+}
+.about-me__content {
+  min-width: 350px;
+}
+.about-me__content--title {
+  font-size: 3rem;
+  letter-spacing: 4px;
+  padding: 1rem 0;
+  color: #fff;
+  text-transform: uppercase;
+  position: relative;
+}
+.about-me__content--title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 0.3rem;
+  width: 10%;
+  background-color: var(--primary-color);
+}
+.about-me__content--title,
+.about-me__content--para {
+  margin: 2rem 0;
+  padding: 3rem 0;
+}
+.about-me__content--link,
+.about-me__content--para {
+  font-family: "Mulish";
+  font-size: 1.7rem;
+}
+.about-me__content--link {
+  font-weight: bold;
+  letter-spacing: 0.1rem;
 }
 
 @keyframes hero {
   0% {
     opacity: 0;
     transform: translateY(20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes hero2 {
+  0% {
+    opacity: 0;
+    transform: translateY(5%);
   }
   100% {
     opacity: 1;
@@ -270,14 +352,18 @@ main {
   .header__main-nav--links li.show {
     opacity: 1;
   }
-  .showcase__content {
-    width: 100%;
-    border-radius: 0;
+
+  .work__card {
+    flex-basis: 40rem;
   }
 }
 @media (max-width: 900px) {
   #showcase {
     align-items: flex-end;
+  }
+  .showcase__content {
+    width: 100%;
+    border-radius: 0;
   }
 }
 @media (max-width: 650px) {
