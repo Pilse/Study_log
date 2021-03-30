@@ -5,7 +5,7 @@ using namespace std;
 
 int map[60][60];
 int visited[60][60]={0,};
-vector<pair<int, int>> vec[60][60];
+vector<pair<int, int> > vec[60][60];
 
 void dps(pair<int, int> cabbage)
 {
