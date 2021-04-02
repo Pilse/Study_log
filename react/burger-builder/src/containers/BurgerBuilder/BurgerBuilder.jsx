@@ -6,7 +6,7 @@ import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import { useHistory } from "react-router";
 import { connect } from "react-redux";
-import * as actionTypes from "../../store/actions";
+import * as burgerBuilderActions from "../../store/actions/index";
 
 const URL = "https://react-my-burger-9e521-default-rtdb.firebaseio.com";
 
@@ -127,10 +127,10 @@ const stateToProps = (state) => {
 const dispathToProps = (dispatch) => {
   return {
     onIngredientAdded: (ingredientName) => {
-      dispatch({ type: actionTypes.ADD_INGREDIENT, ingredientName });
+      dispatch({ type: burgerBuilderActions.addIngredient(ingredientName) });
     },
     onIngredientRemoved: (ingredientName) => {
-      dispatch({ type: actionTypes.REMOVE_INGREDIENT, ingredientName });
+      dispatch({ type: burgerBuilderActions.removeIngredient(ingredientName) });
     },
   };
 };
