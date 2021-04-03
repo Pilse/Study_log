@@ -6,6 +6,8 @@ const works = document.querySelectorAll(".work__card img");
 const aboutMe = document.querySelector("#about-me");
 const aboutMeImg = document.querySelector(".about-me__img");
 const aboutMeContent = document.querySelector(".about-me__content");
+const service = document.querySelector("#services");
+const services = document.querySelectorAll(".service");
 
 let idx = 0;
 
@@ -37,5 +39,15 @@ window.addEventListener("scroll", (e) => {
   } else {
     aboutMeImg.classList.remove("show");
     aboutMeContent.classList.remove("show");
+  }
+  console.log(service.getBoundingClientRect().top);
+  if (service.getBoundingClientRect().top < 800) {
+    services.forEach((service) => {
+      service.classList.add("show");
+    });
+  } else {
+    services.forEach((service) => {
+      service.classList.remove("show");
+    });
   }
 });

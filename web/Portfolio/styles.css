@@ -89,6 +89,7 @@ main {
   padding-right: 3vw;
 }
 .header__main-nav--links li a {
+  font-family: "Mulish";
   position: relative;
   padding: 0.4rem 0.6rem;
   letter-spacing: 1px;
@@ -129,7 +130,7 @@ main {
   align-items: center;
 }
 .showcase__content {
-  background-color: var(--secondary-color-m);
+  border-left: 4px solid var(--secondary-color);
   padding: calc(1rem + 2vw);
   height: calc(25rem);
   display: flex;
@@ -142,7 +143,7 @@ main {
 .showcase__content--title {
   font-size: calc(3rem);
   color: #fff;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
 }
 .showcase__content--para,
 .showcase__content--link {
@@ -264,10 +265,49 @@ main {
 .about-me__content--para {
   font-family: "Mulish";
   font-size: 1.7rem;
+  line-height: 2;
 }
 .about-me__content--link {
   font-weight: bold;
   letter-spacing: 0.1rem;
+}
+
+/* services */
+
+#services {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 6rem 0rem 2rem;
+  background-color: var(--primary-color);
+}
+.service {
+  padding: 4rem;
+  margin: 0 1rem 4rem;
+  flex-basis: 40rem;
+  flex-grow: 1;
+  color: white;
+  font-size: 1.7rem;
+  border-left: 4px solid var(--secondary-color);
+  opacity: 0;
+}
+.service.show {
+  animation: hero2 0.9s ease-in-out forwards;
+}
+.service i {
+  color: var(--secondary-color);
+  font-size: 4rem;
+  margin-bottom: 2rem;
+}
+.services--title {
+  margin: 2rem 0;
+  font-size: 2rem;
+}
+.services--para {
+  font-family: "Mulish";
+  line-height: 2;
+  color: #eee;
 }
 
 @keyframes hero {

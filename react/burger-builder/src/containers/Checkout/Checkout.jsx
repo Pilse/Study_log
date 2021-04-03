@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import ContactData from "./ContactData/ContactData";
 import { connect } from "react-redux";
+import * as actions from "../../store/actions/index";
 
 function Checkout(props) {
   // const [ingredients, setIngredinets] = useState({
@@ -37,6 +38,10 @@ function Checkout(props) {
   //   setTotalPrice(price);
   // }, []);
 
+  if (!props.ings || props.purchased) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div>
       <CheckoutSummary
@@ -51,8 +56,9 @@ function Checkout(props) {
 
 const stateToProps = (state) => {
   return {
-    ings: state.ingredients,
-    totalPrice: state.totalPrice,
+    ings: state.burgerBuilder.ingredients,
+    totalPrice: state.burgerBuilder.totalPrice,
+    purchased: state.order.purchased,
   };
 };
 

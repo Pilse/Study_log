@@ -6,9 +6,8 @@ import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import { useHistory } from "react-router";
 import { connect } from "react-redux";
-import * as burgerBuilderActions from "../../store/actions/index";
-
-const URL = "https://react-my-burger-9e521-default-rtdb.firebaseio.com";
+import * as actions from "../../store/actions/index";
+import { initIngredients } from "../../store/actions/burgerBuilder";
 
 function BurgerBuilder(props) {
   // const [ingredients, setIngredients] = useState({
@@ -18,15 +17,13 @@ function BurgerBuilder(props) {
   //   meat: 0,
   // });
 
-  //useEffect(async () => {
-  // const res = await fetch(URL + "/ingredients.json");
-  // const data = await res.json();
-  // setIngredients(data);
-  //}, []);
+  useEffect(() => {
+    props.onInitIngredients();
+  }, []);
   //const [totalPrice, setTotalPrice] = useState(4);
   //const [purchasable, setPurchasable] = useState(true);
-  const [purchasing, setPurchasing] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [purchasing, setPurchasing] = useState(false);
   const history = useHistory();
 
   // function addIngredinetHandler(type) {
@@ -74,6 +71,7 @@ function BurgerBuilder(props) {
     // }
     // queryParams.push("price=" + props.totalPrice);
     // const queryString = queryParams.join("&");
+    props.onInitPurchase();
     history.push("/checkout");
   }
 
@@ -93,8 +91,8 @@ function BurgerBuilder(props) {
       price={props.totalPrice}
     />
   );
-  if (loading) {
-    orderSummary = <Spinner />;
+  if (!props.ings) {
+    return <Spinner />;
   }
 
   return (
@@ -120,18 +118,21 @@ function BurgerBuilder(props) {
 }
 const stateToProps = (state) => {
   return {
-    ings: state.ingredients,
-    totalPrice: state.totalPrice,
+    ings: state.burgerBuilder.ingredients,
+    totalPrice: state.burgerBuilder.totalPrice,
+    error: state.burgerBuilder.error,
   };
 };
 const dispathToProps = (dispatch) => {
   return {
     onIngredientAdded: (ingredientName) => {
-      dispatch({ type: burgerBuilderActions.addIngredient(ingredientName) });
+      dispatch(actions.addIngredient(ingredientName));
     },
     onIngredientRemoved: (ingredientName) => {
-      dispatch({ type: burgerBuilderActions.removeIngredient(ingredientName) });
+      dispatch(actions.removeIngredient(ingredientName));
     },
+    onInitIngredients: () => dispatch(actions.initIngredients()),
+    onInitPurchase: () => dispatch(actions.purchaseInit()),
   };
 };
 

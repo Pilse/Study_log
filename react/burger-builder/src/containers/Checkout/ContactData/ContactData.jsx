@@ -5,6 +5,7 @@ import Spinner from "../../../components/UI/Spinner/Spinner";
 import "./ContactData.css";
 import Input from "../../../components/UI/Input/Input";
 import { connect } from "react-redux";
+import * as actions from "../../../store/actions/index";
 
 const URL = "https://react-my-burger-9e521-default-rtdb.firebaseio.com";
 
@@ -23,7 +24,7 @@ function ContactData(props) {
 
   async function orderHandler(e) {
     e.preventDefault();
-    setLoading(true);
+    //setLoading(true);
     const sumittedOrder = {
       ingredients: props.ings,
       price: props.totalPrice,
@@ -36,24 +37,25 @@ function ContactData(props) {
         },
         email: order.country,
       },
-      deliveryMethod: "fastest",
+      deliveryMethod: order.deliveryMethod,
     };
-    try {
-      const res = await fetch(URL + "/orders.json", {
-        method: "POST",
-        body: JSON.stringify(sumittedOrder),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await res.json();
-      setLoading(false);
-      setOrder(initialState);
-      history.push("/");
-    } catch (err) {
-      setLoading(false);
-      console.log(err);
-    }
+    props.onOrderBurger(sumittedOrder);
+    // try {
+    //   const res = await fetch(URL + "/orders.json", {
+    //     method: "POST",
+    //     body: JSON.stringify(sumittedOrder),
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   });
+    //   const data = await res.json();
+    //   setLoading(false);
+    //   setOrder(initialState);
+    //   history.push("/");
+    // } catch (err) {
+    //   setLoading(false);
+    //   console.log(err);
+    // }
   }
 
   function changeHandler(e) {
@@ -116,7 +118,7 @@ function ContactData(props) {
       </Button>
     </form>
   );
-  if (loading) {
+  if (props.loading) {
     form = <Spinner />;
   }
 
@@ -130,9 +132,16 @@ function ContactData(props) {
 
 const stateToProps = (state) => {
   return {
-    ings: state.ingredients,
-    totalPrice: state.totalPrice,
+    ings: state.burgerBuilder.ingredients,
+    totalPrice: state.burgerBuilder.totalPrice,
+    loading: state.order.loading,
   };
 };
 
-export default connect(stateToProps, null)(ContactData);
+const dispatchToProps = (dispatch) => {
+  return {
+    onOrderBurger: (orderData) => dispatch(actions.purchaseBurger(orderData)),
+  };
+};
+
+export default connect(stateToProps, dispatchToProps)(ContactData);
