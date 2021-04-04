@@ -29,9 +29,11 @@ function Orders(props) {
   //     console.log(err);
   //   }
   // }, []);
+
   useEffect(() => {
-    props.onFetchOrders();
+    props.onFetchOrders(props.token);
   }, []);
+
   if (props.loading) {
     return <Spinner />;
   }
@@ -53,12 +55,13 @@ const stateToProps = (state) => {
   return {
     orders: state.order.orders,
     loading: state.order.loading,
+    token: state.auth.token,
   };
 };
 
 const dispatchToProps = (dispatch) => {
   return {
-    onFetchOrders: () => dispatch(actions.fetchOrders()),
+    onFetchOrders: (token) => dispatch(actions.fetchOrders(token)),
   };
 };
 

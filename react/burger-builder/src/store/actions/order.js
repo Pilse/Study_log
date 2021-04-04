@@ -23,11 +23,11 @@ export const purchaseBurgerStart = () => {
   };
 };
 
-export const purchaseBurger = (orderData) => {
+export const purchaseBurger = (orderData, token) => {
   return async (dispatch) => {
     try {
       dispatch(purchaseBurgerStart());
-      const res = await fetch(URL + "/orders.json", {
+      const res = await fetch(URL + "/orders.json?auth= " + token, {
         method: "POST",
         headers: {
           "Content-Type": "Application/json",
@@ -68,11 +68,11 @@ export const fetchOrdersStart = () => {
   };
 };
 
-export const fetchOrders = () => {
+export const fetchOrders = (token) => {
   return async (dispatch) => {
     dispatch(fetchOrdersStart());
     try {
-      const res = await fetch(URL + "/orders.json");
+      const res = await fetch(URL + "/orders.json?auth=" + token);
       const data = await res.json();
       const fetchedOrders = [];
       for (let key in data) {

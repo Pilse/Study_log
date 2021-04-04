@@ -19,7 +19,7 @@ void isTree(int num)
     visited[num] = 1;
     for (int i = 0; i < v[num].size(); i++)
     {
-        q.push({v[num][i], 0});
+        q.push({v[num][i], num});
         visited[v[num][i]] = 1;
     }
 
@@ -28,24 +28,24 @@ void isTree(int num)
     while (!q.empty())
     {
         int p = q.front().first;
-        int round = q.front().second;
+        int parent = q.front().second;
+
         q.pop();
 
         for (int i = 0; i < v[p].size(); i++)
         {
             int w = v[p][i];
 
-            if (visited[w] && round == 0 && w == num)
+            if (visited[w] && parent == w)
                 continue;
 
-            visited[w]++;
-
-            if (visited[w] == 2)
+            if (visited[w])
                 flag = 1;
-            else
+
+            if (!visited[w])
             {
-                q.push({w, round + 1});
-                visited[w]++;
+                q.push({w, p});
+                visited[w] = 1;
             }
         }
     }
@@ -73,16 +73,13 @@ int main()
         for (int i = 1; i <= node; i++)
         {
             if (!visited[i])
-            {
-                cout << i;
                 isTree(i);
-            }
+
             if (flag)
             {
                 cnt--;
                 flag = 0;
             }
-            cout << cnt << " ";
         }
         if (cnt == 0)
             cout << "Case " << idx << ": "

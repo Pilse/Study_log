@@ -39,7 +39,7 @@ function ContactData(props) {
       },
       deliveryMethod: order.deliveryMethod,
     };
-    props.onOrderBurger(sumittedOrder);
+    props.onOrderBurger(sumittedOrder, props.token);
     // try {
     //   const res = await fetch(URL + "/orders.json", {
     //     method: "POST",
@@ -135,12 +135,14 @@ const stateToProps = (state) => {
     ings: state.burgerBuilder.ingredients,
     totalPrice: state.burgerBuilder.totalPrice,
     loading: state.order.loading,
+    token: state.auth.token,
   };
 };
 
 const dispatchToProps = (dispatch) => {
   return {
-    onOrderBurger: (orderData) => dispatch(actions.purchaseBurger(orderData)),
+    onOrderBurger: (orderData, token) =>
+      dispatch(actions.purchaseBurger(orderData, token)),
   };
 };
 

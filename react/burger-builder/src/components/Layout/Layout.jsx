@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./Layout.css";
 import Toolbar from "../Navigation/Toolbar/Toolbar";
 import SideDrawer from "../Navigation/SideDrawer/SideDrawer";
+import { connect } from "react-redux";
 
-function Layout({ children }) {
+function Layout(props) {
   const [showSideDrawer, setShowSideDrawer] = useState(false);
 
   function sideDrawerClosedHandler() {
@@ -13,12 +14,23 @@ function Layout({ children }) {
   return (
     <>
       <Toolbar
+        isAuth={props.isAuthenticated}
         showSideDrawer={() => setShowSideDrawer((prevValue) => !prevValue)}
       />
-      <SideDrawer open={showSideDrawer} closed={sideDrawerClosedHandler} />
-      <main className="Content">{children}</main>
+      <SideDrawer
+        isAuth={props.isAuthenticated}
+        open={showSideDrawer}
+        closed={sideDrawerClosedHandler}
+      />
+      <main className="Content">{props.children}</main>
     </>
   );
 }
 
-export default Layout;
+const stateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.token !== null,
+  };
+};
+
+export default connect(stateToProps)(Layout);
