@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
 import "./Auth.css";
 import * as actions from "../../store/actions/index";
 import { connect } from "react-redux";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import { Redirect } from "react-router-dom";
 
 function Auth(props) {
   const [controls, setControls] = useState({
@@ -13,6 +14,13 @@ function Auth(props) {
   });
   const [isSignedUp, setIsSignedUp] = useState(true);
   let errorMessage = "";
+
+  useEffect(() => {
+    console.log("auth: effect", props.authRedirectPath);
+    if (!props.buildingBurger && props.authRedirectPath !== "/") {
+      props.onSetRedirctPath();
+    }
+  }, []);
 
   function submitHandler(e) {
     e.preventDefault();
@@ -45,6 +53,11 @@ function Auth(props) {
       </p>
     );
   }
+  if (props.isAuthenticated) {
+    console.log("auth: authenticated");
+    return <Redirect to={props.authRedirectPath} />;
+  }
+  console.log("auth: rendered");
 
   return (
     <div className="Auth">
@@ -76,6 +89,9 @@ const stateToProps = (state) => {
   return {
     loading: state.auth.loading,
     error: state.auth.error,
+    isAuthenticated: state.auth.token !== null,
+    buildingBurger: state.burgerBuilder.building,
+    authRedirectPath: state.auth.authRedirectPath,
   };
 };
 
@@ -83,6 +99,7 @@ const dispatchToProps = (dispatch) => {
   return {
     onAuth: (email, password, isSignedUp) =>
       dispatch(actions.auth(email, password, isSignedUp)),
+    onSetRedirctPath: () => dispatch(actions.SetAuthRedirectPath("/")),
   };
 };
 

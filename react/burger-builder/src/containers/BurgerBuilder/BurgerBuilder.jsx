@@ -20,6 +20,7 @@ function BurgerBuilder(props) {
   useEffect(() => {
     props.onInitIngredients();
   }, []);
+
   //const [totalPrice, setTotalPrice] = useState(4);
   //const [purchasable, setPurchasable] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -56,7 +57,12 @@ function BurgerBuilder(props) {
   //   setPurchasable(updatedPrice === 4);
   // }
   function purchaseHandler() {
-    setPurchasing(true);
+    if (props.isAuthenticated) {
+      setPurchasing(true);
+    } else {
+      props.onSetRedirectPath("/checkout");
+      history.push("/auth");
+    }
   }
   function purchaseCancleHandler() {
     setPurchasing(false);
@@ -111,6 +117,7 @@ function BurgerBuilder(props) {
         disabled={disabledInfo}
         price={props.totalPrice}
         ordered={purchaseHandler}
+        isAuth={props.isAuthenticated}
         purchasable={props.totalPrice === 4}
       />
     </>
@@ -121,6 +128,9 @@ const stateToProps = (state) => {
     ings: state.burgerBuilder.ingredients,
     totalPrice: state.burgerBuilder.totalPrice,
     error: state.burgerBuilder.error,
+    isAuthenticated: state.auth.token !== null,
+    buildingBurger: state.burgerBuilder.building,
+    authRedirectPath: state.auth.authRedirectPath,
   };
 };
 const dispathToProps = (dispatch) => {
@@ -133,6 +143,7 @@ const dispathToProps = (dispatch) => {
     },
     onInitIngredients: () => dispatch(actions.initIngredients()),
     onInitPurchase: () => dispatch(actions.purchaseInit()),
+    onSetRedirectPath: (path) => dispatch(actions.SetAuthRedirectPath(path)),
   };
 };
 
