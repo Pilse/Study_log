@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Order from "../../components/Order/Order";
 import { connect } from "react-redux";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import * as actions from "../../store/actions/index";
-
-const URL = "https://react-my-burger-9e521-default-rtdb.firebaseio.com";
 
 function Orders(props) {
   // const [orders, setOrders] = useState([]);

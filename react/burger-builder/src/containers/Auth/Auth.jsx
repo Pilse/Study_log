@@ -16,7 +16,6 @@ function Auth(props) {
   let errorMessage = "";
 
   useEffect(() => {
-    console.log("auth: effect", props.authRedirectPath);
     if (!props.buildingBurger && props.authRedirectPath !== "/") {
       props.onSetRedirctPath();
     }
@@ -54,10 +53,8 @@ function Auth(props) {
     );
   }
   if (props.isAuthenticated) {
-    console.log("auth: authenticated");
     return <Redirect to={props.authRedirectPath} />;
   }
-  console.log("auth: rendered");
 
   return (
     <div className="Auth">

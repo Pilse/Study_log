@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router";
+import { useHistory } from "react-router";
 import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
 import { Route, Redirect } from "react-router-dom";
 import ContactData from "./ContactData/ContactData";
 import { connect } from "react-redux";
-import * as actions from "../../store/actions/index";
 
 function Checkout(props) {
   // const [ingredients, setIngredinets] = useState({

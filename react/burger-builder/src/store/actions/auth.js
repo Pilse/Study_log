@@ -61,21 +61,20 @@ export const auth = (email, password, isSignedUp) => {
         body: JSON.stringify(authData),
       });
       const data = await res.json();
-      console.log(data);
+
       if (data.error) {
         dispatch(authFail(data.error));
       } else {
         const expirationDate = new Date(
           new Date().getTime() + data.expiresIn * 1000
         );
-        // localStorage.setItem("token", data.idToken);
-        // localStorage.setItem("expirationDate", expirationDate);
-        // localStorage.setItem("userId", data.localId);
+        localStorage.setItem("token", data.idToken);
+        localStorage.setItem("expirationDate", expirationDate);
+        localStorage.setItem("userId", data.localId);
         dispatch(authSuccess(data.idToken, data.localId));
-        // dispatch(checkAuthTimeout(data.expiresIn));
+        dispatch(checkAuthTimeout(data.expiresIn));
       }
     } catch (err) {
-      console.log(err);
       dispatch(authFail(err));
     }
   };

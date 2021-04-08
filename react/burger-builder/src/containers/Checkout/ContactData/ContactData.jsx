@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router";
 import Button from "../../../components/UI/Button/Button";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import "./ContactData.css";
 import Input from "../../../components/UI/Input/Input";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions/index";
-
-const URL = "https://react-my-burger-9e521-default-rtdb.firebaseio.com";
 
 function ContactData(props) {
   const initialState = {
@@ -19,8 +16,6 @@ function ContactData(props) {
     deliveryMethod: "Fastest",
   };
   const [order, setOrder] = useState(initialState);
-  const [loading, setLoading] = useState(false);
-  const history = useHistory();
 
   async function orderHandler(e) {
     e.preventDefault();

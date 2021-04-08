@@ -7,7 +7,6 @@ import Spinner from "../../components/UI/Spinner/Spinner";
 import { useHistory } from "react-router";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
-import { initIngredients } from "../../store/actions/burgerBuilder";
 
 function BurgerBuilder(props) {
   // const [ingredients, setIngredients] = useState({

@@ -27,7 +27,7 @@ export const purchaseBurger = (orderData, token) => {
   return async (dispatch) => {
     try {
       dispatch(purchaseBurgerStart());
-      const res = await fetch(URL + "/orders.json?auth= " + token, {
+      const res = await fetch(URL + "/orders.json", {
         method: "POST",
         headers: {
           "Content-Type": "Application/json",
