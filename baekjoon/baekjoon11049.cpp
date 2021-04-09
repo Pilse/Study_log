@@ -1,31 +1,63 @@
 #include <iostream>
 #include <vector>
-#include <climits>
+#include <queue>
 #include <algorithm>
+#include <string.h>
 
 using namespace std;
 
-vector<pair<int, int> > v;
-
+int n, m;
+int map[501][501];
 int dp[501][501];
 
-int matrix(int s, int e)
+int dy[4] = {0, 0, 1, -1};
+int dx[4] = {1, -1, 0, 0};
+
+//int path(int ey, int ex)
+//{
+//    if(ey == 0 && ex == 0)
+//        return 1;
+//
+//    if(dp[ey][ex] != -1)
+//        return dp[ey][ex];
+//
+//
+//    dp[ey][ex] = 0;
+//
+//    if(ex - 1 >= 0 && map[ey][ex - 1] > map[ey][ex])
+//        dp[ey][ex] += path(ey, ex - 1);
+//    if(ey - 1 >= 0 && map[ey - 1][ex] > map[ey][ex])
+//        dp[ey][ex] += path(ey - 1, ex);
+//    if(ex + 1 <= m - 1 && map[ey][ex + 1] > map[ey][ex])
+//        dp[ey][ex] += path(ey, ex + 1);
+//    if(ey + 1 <= n - 1 && map[ey + 1][ex] > map[ey][ex])
+//        dp[ey][ex] += path(ey + 1, ex);
+//
+//
+//    return dp[ey][ex];
+//}
+int path(int ey, int ex)
 {
-    if (s == e)
-        return 0;
+    if (ey == n - 1 && ex == m - 1)
+        return 1;
 
-    if (s + 1 == e)
-        return v[s].first * v[s].second * v[e].second;
+    if (dp[ey][ex] != -1)
+        return dp[ey][ex];
 
-    if (dp[s][e])
-        return dp[s][e];
-
-    dp[s][e] = INT_MAX;
-
-    for (int i = s; i < e; i++)
-        dp[s][e] = min(dp[s][e], matrix(s, i) + matrix(i + 1, e) + v[s].first * v[i + 1].first * v[e].second);
-
-    return dp[s][e];
+    dp[ey][ex] = 0;
+    for (int i = 0; i < 4; i++)
+    {
+        int ny = ey + dy[i];
+        int nx = ex + dx[i];
+        if (ny >= 0 && nx >= 0 && ny < n && nx < m)
+        {
+            if (map[ey][ex] > map[ny][nx])
+            {
+                dp[ey][ex] += path(ny, nx);
+            }
+        }
+    }
+    return dp[ey][ex];
 }
 
 int main()
@@ -33,24 +65,17 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int n;
+    cin >> n >> m;
 
-    cin >> n;
-
-    int t1, t2;
-    ba
-
-        for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
-        cin >> t1 >> t2;
-
-        v.push_back({t1, t2});
+        for (int j = 0; j < m; j++)
+        {
+            cin >> map[i][j];
+        }
     }
-
-    int result = INT_MAX;
-
-    for (int i = 0; i < n - 1; i++)
-        result = min(result, matrix(0, i) + matrix(i + 1, n - 1) + v[0].first * v[i + 1].first * v[n - 1].second);
-
-    cout << result;
+    memset(dp, -1, sizeof(dp));
+    //    int result = path(n - 1, m - 1);
+    int result = path(0, 0);
+    cout << result << '\n';
 }
