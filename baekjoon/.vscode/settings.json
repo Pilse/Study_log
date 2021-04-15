@@ -6,6 +6,7 @@
         "iostream": "cpp",
         "vector": "cpp",
         "memory": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "functional": "cpp"
     }
 }
