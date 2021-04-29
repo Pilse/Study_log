@@ -1,12 +1,13 @@
 #include <iostream>
 #include <queue>
 #include <vector>
+#include <algorithm>
 #define MAX 2000001
 
 using namespace std;
 
 priority_queue<pair<int, int>, vector<pair<int, int> >, greater<pair<int, int> > > pq;
-priority_queue<int, vector<int>, greater<int> > r;
+int r[2001];
 int dest[101];
 int arr[2001];
 int g1[2001];
@@ -23,11 +24,14 @@ void dijk(int s, int a[], vector<pair<int, int> > v[])
         int cur = pq.top().second;
         pq.pop();
 
+        if (arr[cur] < dist)
+            continue;
+
         for (int i = 0; i < v[cur].size(); i++)
         {
             int d = v[cur][i].first;
             int w = v[cur][i].second;
-            if (a[w] < dist + d)
+            if (a[w] <= dist + d)
                 continue;
             a[w] = dist + d;
             pq.push({a[w], w});
@@ -37,13 +41,13 @@ void dijk(int s, int a[], vector<pair<int, int> > v[])
 
 int main()
 {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
 
     int test;
     cin >> test;
 
-    for (int i = 0; i < test; i++)
+    for (int te = 0; te < test; te++)
     {
         int n, m, t;
         int s, g, h;
@@ -62,12 +66,11 @@ int main()
         {
             cin >> dest[j];
         }
+        sort(dest, dest + t);
 
-        for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= n; j++)
         {
-            arr[i] = MAX;
-            g1[i] = MAX;
-            h1[i] = MAX;
+            arr[j] = g1[j] = h1[j] = MAX;
         }
 
         dijk(s, arr, v);
@@ -83,20 +86,11 @@ int main()
             int c = dest[j];
             int distance;
 
-            if (sToG == MAX || sToH == MAX || GbetH == MAX)
-                distance = MAX;
-            else
-                distance = min(sToG + GbetH + h1[c], sToH + GbetH + g1[c]);
+            distance = min(sToG + GbetH + h1[c], sToH + GbetH + g1[c]);
 
             if (distance == arr[c])
-                r.push(c);
+                cout << c << " ";
         }
-        while (!r.empty())
-        {
-            cout << r.top() << " ";
-            r.pop();
-        }
-
         cout << '\n';
     }
 }
