@@ -70,7 +70,7 @@ copyEl.addEventListener('click',()=>{
 
     const copied = document.createElement('div');
     copied.classList.add('bubble');
-    copied.innerText='coppied!'
+    copied.innerText='copied!'
     resultContainer.appendChild(copied);
     setTimeout(()=>copied.remove(),3000);
 })
