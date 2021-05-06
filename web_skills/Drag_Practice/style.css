@@ -1,0 +1,22 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+
+
+.element{
+    font-size: 2rem;
+    margin:1rem 0;
+    cursor:default;
+}
+.p {
+    width: fit-content;
+    height: fit-content;
+}
