@@ -1,148 +1,202 @@
 #include <iostream>
-#include <queue>
-
 using namespace std;
+int arr[11][11];
+int arr_state[11][11];
+int ret;
+int n[5] = {5, 5, 5, 5, 5};
+bool temp_state = false;
 
-queue<pair<int, int> > q;
-
-pair<int, int> arr[11][11];
-int one = 5;
-int two = 5;
-int three = 5;
-int four = 5;
-int five = 5;
-int cnt;
-
-int isN(int y, int x, int n)
+void update(int r, int c, int length, int onetwo)
 {
-    for (int i = 0; i < n; i++)
+    for (int i = r; i < r + length; i++)
     {
-        if (y + i > 10 || x + n - 1 > 10)
-            return 0;
-        if (arr[y + i][x + n - 1].first == 0)
-            return 0;
-    }
-    for (int i = 0; i < n; i++)
-    {
-        if (y + n - 1 > 10 || x + i > 10)
-            return 0;
-        if (arr[y + n - 1][x + i].first == 0)
-            return 0;
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        arr[y + i][x + n - 1].second = 1;
-    }
-    for (int i = 0; i < n; i++)
-    {
-        arr[y + n - 1][x + i].second = 1;
-    }
-    return 1;
-}
-
-int getSize(int y, int x)
-{
-    int i = 2;
-    int size;
-    switch (i)
-    {
-    case 2:
-        size = two;
-        break;
-    case 3:
-        size = three;
-        break;
-    case 4:
-        size = four;
-        break;
-    case 5:
-        size = five;
-        break;
-    default:
-        size = one;
-        break;
-    }
-    while (i <= 5 && isN(y, x, i) && size > 0)
-        i++;
-
-    return i - 1;
-}
-
-void paper()
-{
-    while (!q.empty())
-    {
-        int y = q.front().first;
-        int x = q.front().second;
-        q.pop();
-
-        if (arr[y][x].second == 0)
+        for (int j = c; j < c + length; j++)
         {
-            arr[y][x].second = 1;
-            cout << y << " " << x << '\n';
-            for (int i = 1; i <= 10; i++)
+            arr[i][j] = onetwo;
+        }
+    }
+}
+
+bool check(int r, int c, int length)
+{
+    for (int i = r; i < r + length; i++)
+    {
+        for (int j = c; j < c + length; j++)
+        {
+            if (arr[i][j] == 0 || arr[i][j] == 2)
+                return false;
+        }
+    }
+    return true;
+}
+
+void dfs(int r, int c, int depth)
+{
+
+    int temp = 0;
+    for (int i = r; i < 10; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            if (arr[i][j] == 1)
             {
-                for (int j = 1; j <= 10; j++)
-                {
-                    cout << arr[i][j].second << " ";
-                }
-                cout << '\n';
-            }
-            int size = getSize(y, x);
-            cout << size << '\n';
-            cout << '\n';
-            switch (size)
-            {
-            case 1:
-                one--;
-                if (one < 0)
-                {
-                    cnt = -1;
-                    return;
-                }
-                cnt++;
-                break;
-            case 2:
-                two--;
-                cnt++;
-                break;
-            case 3:
-                three--;
-                cnt++;
-                break;
-            case 4:
-                four--;
-                cnt++;
-                break;
-            case 5:
-                five--;
-                cnt++;
-                break;
-            default:
+                r = i;
+                c = j;
+                temp = 1;
+
                 break;
             }
         }
+        if (temp == 1)
+            break;
+    }
+
+    if (temp == 0)
+    {
+        if (ret > depth)
+        {
+            ret = depth;
+        }
+        return;
+    }
+
+    for (int i = 1; i <= 5; i++)
+    {
+        if (n[i - 1] == 0)
+            continue;
+        if (check(r, c, i) == false)
+            return;
+        else
+            n[i - 1]--;
+        update(r, c, i, 2);
+        dfs(r, c, depth + 1);
+        n[i - 1]++;
+        update(r, c, i, 1);
     }
 }
 
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
 
-    for (int i = 1; i <= 10; i++)
+    ret = 30;
+    for (int i = 0; i < 10; i++)
     {
-        for (int j = 1; j <= 10; j++)
+        for (int j = 0; j < 10; j++)
         {
-            int t;
-            cin >> t;
-            arr[i][j] = {t, 0};
-            if (t == 1)
-                q.push({i, j});
+            cin >> arr[i][j];
+            if (arr[i][j] == 1)
+                temp_state = true;
         }
     }
 
-    paper();
-    cout << cnt << '\n';
+    dfs(0, 0, 0);
+    if (temp_state == true && ret == 30)
+        cout << -1;
+    else
+        cout << ret;
+    return 0;
+}
+#include <iostream>
+using namespace std;
+int arr[11][11];
+int arr_state[11][11];
+int ret;
+int n[5] = {5, 5, 5, 5, 5};
+bool temp_state = false;
+
+void update(int r, int c, int length, int onetwo)
+{
+    for (int i = r; i < r + length; i++)
+    {
+        for (int j = c; j < c + length; j++)
+        {
+            arr[i][j] = onetwo;
+        }
+    }
+}
+
+bool check(int r, int c, int length)
+{
+    for (int i = r; i < r + length; i++)
+    {
+        for (int j = c; j < c + length; j++)
+        {
+            if (arr[i][j] == 0 || arr[i][j] == 2)
+                return false;
+        }
+    }
+    return true;
+}
+
+void dfs(int r, int c, int depth)
+{
+
+    int temp = 0;
+    for (int i = r; i < 10; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            if (arr[i][j] == 1)
+            {
+                r = i;
+                c = j;
+                temp = 1;
+
+                break;
+            }
+        }
+        if (temp == 1)
+            break;
+    }
+
+    if (temp == 0)
+    {
+        if (ret > depth)
+        {
+            ret = depth;
+        }
+        return;
+    }
+
+    for (int i = 1; i <= 5; i++)
+    {
+        if (n[i - 1] == 0)
+            continue;
+        if (check(r, c, i) == false)
+            return;
+        else
+            n[i - 1]--;
+        update(r, c, i, 2);
+        dfs(r, c, depth + 1);
+        n[i - 1]++;
+        update(r, c, i, 1);
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    ret = 30;
+    for (int i = 0; i < 10; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            cin >> arr[i][j];
+            if (arr[i][j] == 1)
+                temp_state = true;
+        }
+    }
+
+    dfs(0, 0, 0);
+    if (temp_state == true && ret == 30)
+        cout << -1;
+    else
+        cout << ret;
+    return 0;
 }

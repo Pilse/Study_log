@@ -31,10 +31,15 @@ export default {
 }
 .list-container:hover {
   background-color: #ddd;
+  border-left: 4px solid rebeccapurple;
+  transform: scale(1.05);
 }
 li {
   list-style-type: none;
   padding: 1rem;
+}
+.list-container:hover button {
+  opacity: 1;
 }
 button {
   font-size: 14px;
@@ -45,6 +50,7 @@ button {
   padding: 20px 10px;
   cursor: pointer;
   transition: 0.2s ease;
+  opacity: 0;
 }
 button:hover {
   background-color: red;
