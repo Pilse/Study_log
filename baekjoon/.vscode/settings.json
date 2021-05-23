@@ -7,6 +7,7 @@
         "vector": "cpp",
         "memory": "cpp",
         "string": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "map": "cpp"
     }
 }
