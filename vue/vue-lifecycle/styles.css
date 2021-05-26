@@ -22,7 +22,7 @@ header {
   max-width: 40rem;
 }
 
-#user-goal {
+#app {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 3rem auto;
   border-radius: 10px;
@@ -32,14 +32,14 @@ header {
   max-width: 40rem;
 }
 
-#user-goal h2 {
+#app h2 {
   font-size: 2rem;
   border-bottom: 4px solid #ccc;
   color: #4fc08d;
   margin: 0 0 1rem 0;
 }
 
-#user-goal p {
+#app p {
   font-size: 1.25rem;
   font-weight: bold;
   border: 1px solid #4fc08d;
@@ -49,18 +49,18 @@ header {
   border-radius: 25px;
 }
 
-#user-goal input {
+#app input {
   font: inherit;
   border: 1px solid #ccc;
 }
 
-#user-goal input:focus {
+#app input:focus {
   outline: none;
   border-color: #1b995e;
   background-color: #d7fdeb;
 }
 
-#user-goal button {
+#app button {
   font: inherit;
   cursor: pointer;
   border: 1px solid #ff0077;
@@ -70,8 +70,8 @@ header {
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.26);
 }
 
-#user-goal button:hover,
-#user-goal button:active {
+#app button:hover,
+#app button:active {
   background-color: #ec3169;
   border-color: #ec3169;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
