@@ -10,9 +10,14 @@ const app = Vue.createApp({
       this.currentUserInput = event.target.value;
     },
     setText() {
-      this.message = this.currentUserInput;
+      // this.message = this.currentUserInput;
+      this.message = this.$refs.userText.value
     },
   },
+  befroeCreate(){
+    // You could make a http request
+    console.log('beforeCreate()');
+  }
 });
 
 app.mount('#app');
