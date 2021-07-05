@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
-import products from '../products'
 import Rating from '../components/Rating'
 
 const ProductScreen = ({ match }) =>{
-  const product = products.find(p => p._id === match.params.id)
+  const [product, setProduct] = useState({})
+
+  useEffect(() => {
+    const fetchProduct = async() => {
+      const res = await fetch(`/api/products/${match.params.id}`)
+      const data = await res.json()
+
+      setProduct(data)
+    }
+
+    fetchProduct()
+
+  },[match])
   
   return(
     <>
