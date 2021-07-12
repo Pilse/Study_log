@@ -1,4 +1,4 @@
-import { USER_DETAILS_FAIL, USER_DETAILS_REQUEST, USER_DETAILS_SUCCESS, USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS } from "../constants/userConstants"
+import { USER_DETAILS_FAIL, USER_DETAILS_REQUEST, USER_DETAILS_SUCCESS, USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_UPDATE_PROFILE_FAIL, USER_UPDATE_PROFILE_REQUEST, USER_UPDATE_PROFILE_SUCCESS } from "../constants/userConstants"
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -130,6 +130,45 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
   } catch(err) {
     dispatch({
         type: USER_DETAILS_FAIL,
+        payload: err.response && err.response.err.message ? err.response.err.message : err.message
+      })
+  }
+}
+
+export const updateUserProfile = (user) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_UPDATE_PROFILE_REQUEST
+    })
+    const { userLogin: { userInfo } } = getState()
+
+    const config = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${userInfo.token}`
+      },
+      body: JSON.stringify(user)
+    }
+
+    const res = await fetch('/api/users/profile', config)
+    const data = await res.json()
+
+    if(!data.message) {
+      dispatch({
+        type: USER_UPDATE_PROFILE_SUCCESS,
+        payload: data
+      })
+    } else {
+      dispatch({
+        type: USER_UPDATE_PROFILE_FAIL,
+        payload: data.response && data.response.data.message ? data.response.data.message : data.message
+      })
+    }
+
+  } catch(err) {
+    dispatch({
+        type: USER_UPDATE_PROFILE_FAIL,
         payload: err.response && err.response.err.message ? err.response.err.message : err.message
       })
   }
