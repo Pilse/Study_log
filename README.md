@@ -1,11 +1,24 @@
-# Study_log
+#### `Main Directories`
 
-- **`baekjoon`** : 백준에서 알고리즘 문제해결을 공부합니다.
-- **`coding_test`** : 교내 대회나 기업 코딩테스트 문제를 공부합니다.
-- **`cpp_study`** : `c++`의 기초를 공부합니다.
-- **`data_structure`** : `c`로 자료구조를 공부합니다.
-- **`graphQL`** : `react` 와 `graphQL` 을 같이 활용하여 효율적으로 데이터를 가져오는 법을 공부합니다.
-- **`react`** : `react`에 대하여 공부합니다.
-- **`vue`** : `vue`에 대하여 공부합니다.
-- **`web`** :`FE` 부터 `BE` 까지 **`JavaScript`** 를 이용하여 풀스택 웹개발을 공부합니다.
-- **`web_skills`** :  **`css`** 와 **`Javascript`** 를 이용하여 웹에서 더 나은 `UX`와 `UI` 제공을 위해 공부합니다.    
+<hr />
+
+**`baekjoon`** : Studying algorithm problem solving in BOJ.
+
+[![Solved.ac프로필](http://mazassumnida.wtf/api/generate_badge?boj=gogosky1175)](https://solved.ac/gogosky1175)
+
+<hr />
+
+**`react`** : Studying javascript library **React** 
+
+<hr />
+
+ **`web`** : Studying the basics of the web from the **front-end** to the **back-end**.
+
+ <img width="330" alt="스크린샷 2021-07-13 오후 5 51 15" src="https://user-images.githubusercontent.com/71018111/125422781-0a5ea40c-3e78-46f1-9161-c5139a57da42.png">
+
+<hr />
+
+**`web_skills`** : Studying to provide better **UI** and **UX**.
+
+<img width="330" alt="스크린샷 2021-07-13 오후 5 52 18" src="https://user-images.githubusercontent.com/71018111/125422522-a745d377-d7be-48c5-9363-de2a094a629f.png">
+
