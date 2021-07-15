@@ -77,7 +77,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
 }
 
 
-export const payOrderDetails = (orderId, paymentResult) => async (dispatch, getState) => {
+export const payOrder = (orderId, paymentResult) => async (dispatch, getState) => {
   try {
     dispatch({
       type: ORDER_PAY_REQUEST
@@ -85,6 +85,7 @@ export const payOrderDetails = (orderId, paymentResult) => async (dispatch, getS
     const { userLogin: { userInfo } } = getState()
 
     const config = {
+      method:'PUT',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${userInfo.token}`
