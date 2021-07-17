@@ -1,4 +1,4 @@
-import { ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_CREATE_FAIL, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_PAY_FAIL, ORDER_PAY_SUCCESS, ORDER_PAY_REQUEST } from '../constants/orderConstants'
+import { ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_CREATE_FAIL, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_PAY_FAIL, ORDER_PAY_SUCCESS, ORDER_PAY_REQUEST, ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_SUCCESS, ORDER_LIST_MY_FAIL } from '../constants/orderConstants'
 
 export const createOrder = (order) => async (dispatch, getState) => {
   try {
@@ -111,6 +111,43 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
   } catch(err) {
     dispatch({
         type: ORDER_PAY_FAIL,
+        payload: err.response && err.response.err.message ? err.response.err.message : err.message
+      })
+  }
+}
+
+export const listMyOrders = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ORDER_LIST_MY_REQUEST
+    })
+    const { userLogin: { userInfo } } = getState()
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${userInfo.token}`
+      }
+    }
+
+    const res = await fetch(`/api/orders/myorders`, config)
+    const data = await res.json()
+
+    if(!data.message) {
+      dispatch({
+        type: ORDER_LIST_MY_SUCCESS,
+        payload: data
+      })
+    } else {
+      dispatch({
+        type: ORDER_LIST_MY_FAIL,
+        payload: data.response && data.response.data.message ? data.response.data.message : data.message
+      })
+    }
+
+  } catch(err) {
+    dispatch({
+        type: ORDER_LIST_MY_FAIL,
         payload: err.response && err.response.err.message ? err.response.err.message : err.message
       })
   }
