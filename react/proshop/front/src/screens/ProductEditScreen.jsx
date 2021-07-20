@@ -53,20 +53,15 @@ const ProductEditScreen = ({ history, match }) => {
     const formData = new FormData()
     formData.append('image', file)
     setUploading(true)
-
-    console.log(formData)
     
     try {
-      const config = {
-        method: 'POST',
-    
-        body: JSON.stringify(formData)
-      }
-      const res = await fetch('/api/upload', config)
-      const data = await res.json()
-
-      console.log(data)
-
+   
+      const res = await fetch('/api/upload', {
+        method:'POST',
+        body: formData
+      })
+      const data = await res.text()
+      
       setImage(data)
       setUploading(false)
     } catch(err) {
@@ -130,11 +125,12 @@ const ProductEditScreen = ({ history, match }) => {
               onChange={(e) => setImage(e.target.value)}
             >
             </Form.Control>
-            <Form.File id='image-file' 
-              label='Choose File' 
-              custom onChange={uploadFileHandler}
-              >
-            </Form.File>
+            <Form.File
+              id='image-file'
+              label='Choose File'
+              custom
+              onChange={uploadFileHandler}
+            ></Form.File>
             {uploading && <Loader />}
           </Form.Group>
 
