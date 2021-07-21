@@ -14,6 +14,9 @@ import {
   PRODUCT_UPDATE_REQUEST,
   PRODUCT_UPDATE_SUCCESS,
   PRODUCT_UPDATE_FAIL,
+  PRODUCT_CREATE_REVIEW_REQUEST,
+  PRODUCT_CREATE_REVIEW_SUCCESS,
+  PRODUCT_CREATE_REVIEW_FAIL,
  } from "../constants/productConstant";
 
  export const listProducts = () => async (dispatch) => {
@@ -170,6 +173,44 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     } else {
       dispatch({
         type: PRODUCT_UPDATE_FAIL,
+        payload: data.response && data.response.data.message ? data.response.data.message : data.message
+      })
+    }
+
+  } catch(err) {
+    dispatch({
+        type: PRODUCT_UPDATE_FAIL,
+        payload: err.response && err.response.err.message ? err.response.err.message : err.message
+      })
+  }
+}
+
+export const createProductReview = (productId, review) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: PRODUCT_CREATE_REVIEW_REQUEST
+    })
+    const { userLogin: { userInfo } } = getState()
+
+    const config = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${userInfo.token}`
+      },
+      body:JSON.stringify(review)
+    }
+  
+    const res = await fetch(`/api/products/${productId}/reviews`, config)
+    const data = await res.json()
+
+    if(!data.message) {
+      dispatch({
+        type: PRODUCT_CREATE_REVIEW_SUCCESS
+      })
+    } else {
+      dispatch({
+        type: PRODUCT_CREATE_REVIEW_FAIL,
         payload: data.response && data.response.data.message ? data.response.data.message : data.message
       })
     }
