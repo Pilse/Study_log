@@ -24,7 +24,10 @@ app.use(express.json())
 app.get('/', (req, res) => {
   res.send('API is running')
 })
-
+app.post('/test',(req ,res) => {
+  console.log(req.body)
+  res.send(req.body)
+})
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
