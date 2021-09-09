@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>d3</title>
+  <style>
+    line {
+      stroke: #333;
+    }
+
+    rect {
+      fill: teal;
+    }
+
+    .name {
+      fill: white;
+    }
+
+    text {
+      fill: teal;
+    }
+  </style>
+</head>
+
+<body>
+  <svg width='300' heigth='200'>
+    <text x='5' y='20'>SCORES</text>
+    <line x1='5' y1='30' x2='5' y2='140'></line>
+    <rect width='60' height='30' x='10' y='35'></rect>
+    <text x='20' y='55' class='name'>Jack</text>
+    <text x='80' y='55'>60</text>
+
+    <rect width='90' height='30' x='10' y='70'></rect>
+    <text x='20' y='90' class='name'>Jill</text>
+    <text x='110' y='90'>90</text>
+
+    <rect width='70' height='30' x='10' y='105'></rect>
+    <text x='20' y='125' class='name'>Jane</text>
+    <text x='90' y='125'>70</text>
+    <line x1='5' y1='140' x2='150' y2='140'></line>
+  </svg>
+</body>
+
+</html>
