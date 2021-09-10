@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src='../d3_min_lib/d3.min.js' defer></script>
+  <script src='imdb.js' defer></script>
+  <link rel="stylesheet" href="styles.css">
+  <title>Imdb Rating</title>
+</head>
+
+<body>
+
+  <div id="container">
+    <div id="title">
+      <h1>ImDb Rating</h1>
+      <p>Top 10 grossing english movies for 2019</p>
+    </div>
+
+    <div id="movieinfo">
+      <div id="movielist"></div>
+      <div id="moviepost"></div>
+    </div>
+
+    <form id="choicesubmit">
+      <label>U</label>
+      <input type="checkbox" id="cbu">
+      <label>15</label>
+      <input type="checkbox" id="cb15">
+      <label>12A</label>
+      <input type="checkbox" id="cb12a">
+      <label>PG</label>
+      <input type="checkbox" id="cbpg">
+      <br>
+      <input type="submit" id="submit" value="Submit">
+    </form>
+
+    <p id="feedback"></p>
+
+    <div id="charts">
+      <div id="cont"></div>
+      <div id="legend"></div>
+      <svg id="gross"></svg>
+      <svg id="dura"></svg>
+      <svg id="votes"></svg>
+    </div>
+  </div>
+
+</body>
+
+</html>
