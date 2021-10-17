@@ -1,91 +1,81 @@
 #include <iostream>
 #include <vector>
-#include <string.h>
+#include <queue>
+#include <algorithm>
+
 using namespace std;
 
-int map[60][60];
-int visited[60][60]={0,};
-vector<pair<int, int> > vec[60][60];
+int arr[51][51];
+int visited[51][51];
+int dx[4] = {0, 1, 0, -1};
+int dy[4] = {1, 0, -1, 0};
+int X, Y;
 
-void dps(pair<int, int> cabbage)
+void bfs(int x, int y)
 {
-    visited[cabbage.first][cabbage.second] = 1;
-    for (int i = 0; i < vec[cabbage.first][cabbage.second].size(); i++)
+    visited[x][y] = 1;
+
+    queue<pair<int, int> > q;
+    q.push({x, y});
+
+    while (!q.empty())
     {
-        pair<int, int> w = vec[cabbage.first][cabbage.second][i];
-        if (!visited[w.first][w.second])
-            dps(w);
+        int curx = q.front().first;
+        int cury = q.front().second;
+        q.pop();
+
+        for (int i = 0; i < 4; i++)
+        {
+            int newx = curx + dx[i];
+            int newy = cury + dy[i];
+
+            if (newx < 0 || newy < 0 || newx > X || newy > Y)
+                continue;
+            if (arr[newx][newy] && !visited[newx][newy])
+            {
+                visited[newx][newy] = 1;
+                q.push({newx, newy});
+            }
+        }
     }
 }
+
 int main()
 {
-    int testcase = 0;
-    int row = 0, col = 0;
-    int green = 0;
-    int count = 0;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
 
-    cin >> testcase;
+    int t;
+    cin >> t;
 
-    for (int a = 0; a < testcase; a++)
+    while (t--)
     {
-        cin >> row >> col >> green;
-        for (int b = 0; b < green; b++)
+        int k, cnt = 0;
+        cin >> X >> Y >> k;
+
+        for (int i = 0; i < k; i++)
         {
-            int x, y;
-            cin >> x >> y;
-            map[x+1][y+1] = 1;
+            int tx, ty;
+            cin >> tx >> ty;
+
+            arr[tx][ty] = 1;
         }
-        for (int i = 1; i < row+1; i++)
+
+        for (int i = 0; i < X; i++)
         {
-            for (int j = 1; j < col+1; j++)
+            for (int j = 0; j < Y; j++)
             {
-                if (map[i][j] == 1)
+                if (arr[i][j] && !visited[i][j])
                 {
-                    if (map[i - 1][j] == 1)
-                    {
-                        vec[i][j].push_back({i - 1, j});
-                        vec[i - 1][j].push_back({i, j});
-                    }
-                    if (map[i + 1][j] == 1)
-                    {
-                        vec[i][j].push_back({i + 1, j});
-                        vec[i + 1][j].push_back({i, j});
-                    }
-                    if (map[i][j - 1] == 1)
-                    {
-                        vec[i][j].push_back({i, j - 1});
-                        vec[i][j - 1].push_back({i, j});
-                    }
-                    if (map[i][j + 1] == 1)
-                    {
-                        vec[i][j + 1].push_back({i, j});
-                        vec[i][j].push_back({i, j + 1});
-                    }
-                }
-                
-            }
-        }
-        for (int x = 1; x < row+1; x++)
-        {
-            for (int y = 1; y < col+1; y++)
-            {
-                if (!visited[x][y] && map[x][y] )
-                {
-                    dps({x, y});
-                    count++;
+                    bfs(i, j);
+                    cnt++;
                 }
             }
         }
-        cout << count << endl;
-        count = 0;
-        for(int i=0;i<60;i++)
-        {
-            for(int j=0;j<60;j++)
-            {
-                map[i][j]=0;
-                visited[i][j]=0;
-            }
-        }
-        
+
+        cout << cnt << '\n';
+
+        fill(&arr[0][0], &arr[50][50], 0);
+        fill(&visited[0][0], &visited[50][50], 0);
     }
 }
