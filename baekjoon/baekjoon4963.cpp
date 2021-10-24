@@ -66,7 +66,6 @@ int main()
       {
         if (map[y][x] && !visited[y][x])
         {
-          //                    cout << y << " " << x << '\n';
           cnt++;
           bfs(y, x);
         }
