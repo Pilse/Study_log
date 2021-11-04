@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer')
 
-let browser,page
+let browser, page
 
 beforeEach(async () => {
   browser = await puppeteer.launch({
@@ -22,10 +22,38 @@ test('the header has the correct text', async () => {
   expect(text).toEqual('Blogster')
 }, 30000)
 
-test('clicking login starts oauth flow', async() => {
+test('clicking login starts oauth flow', async () => {
   await page.click('.right a')
 
   const url = await page.url()
 
-  console.log(url)
+  expect(url).toMatch(/accounts\.google\.com/)
+}, 30000)
+
+test.only('When signed in, shows logout button', async () => {
+  const id = '617f6bf246d75adb1b7d4474'
+
+  const Buffer = require('safe-buffer').Buffer
+  const sessionObject = {
+    passport: {
+      user: id
+    }
+  }
+  const sessionString = Buffer.from(
+    JSON.stringify(sessionObject)
+  ).toString('base64')
+
+  const Keygrip = require('keygrip')
+  const keys = require('../config/keys')
+  const keygrip = new Keygrip([keys.cookieKey])
+  const sig = keygrip.sign('session=' + sessionString)
+  
+  await page.setCookie({ name: 'session', value: sessionString})
+  await page.setCookie({ name: 'session.sig', value: sig})
+  // await page.goto('localhost:3000')
+  // await page.waitFor('a[href="/auth/logout"]')
+  await page.reload({waitUntil: 'domcontentloaded'})
+
+  const text = await page.$eval('a[href="/auth/logout"]', el => el.innerHTML)
+  expect(text).toEqual('Logout')
 }, 30000)
