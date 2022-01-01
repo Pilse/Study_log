@@ -1,9 +1,10 @@
 {
-    "files.associations": {
-        "*.jsx": "javascriptreact",
-        "utility": "cpp",
-        "queue": "cpp",
-        "tuple": "cpp",
-        "iostream": "cpp"
-    }
+  "files.associations": {
+    "*.jsx": "javascriptreact",
+    "utility": "cpp",
+    "queue": "cpp",
+    "tuple": "cpp",
+    "iostream": "cpp"
+  },
+  "C_Cpp.errorSquiggles": "Disabled"
 }
