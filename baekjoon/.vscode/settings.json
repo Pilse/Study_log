@@ -1,14 +1,15 @@
 {
-    "files.associations": {
-        "*.jsx": "javascriptreact",
-        "utility": "cpp",
-        "algorithm": "cpp",
-        "iostream": "cpp",
-        "vector": "cpp",
-        "memory": "cpp",
-        "string": "cpp",
-        "functional": "cpp",
-        "map": "cpp"
-    },
-    "C_Cpp.errorSquiggles": "Disabled"
+  "files.associations": {
+    "*.jsx": "javascriptreact",
+    "utility": "cpp",
+    "algorithm": "cpp",
+    "iostream": "cpp",
+    "vector": "cpp",
+    "memory": "cpp",
+    "string": "cpp",
+    "functional": "cpp",
+    "map": "cpp",
+    "queue": "cpp"
+  },
+  "C_Cpp.errorSquiggles": "Disabled"
 }
