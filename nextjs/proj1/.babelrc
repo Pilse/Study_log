@@ -1,5 +1,5 @@
 {
-  "presets": ["next/babel"],
+  "presets": ["next/babel", "@babel/typescript"],
   "plugins": [
     [
       "styled-components",

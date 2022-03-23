@@ -5,8 +5,8 @@ const ClientProjectsPage: NextPage = () => {
   const router = useRouter();
 
   const loadProjectHandler = () => {
-    router.push('/clients/max/projecta');
-  }
+    router.push("/clients/max/projecta");
+  };
 
   return (
     <div>
@@ -14,7 +14,7 @@ const ClientProjectsPage: NextPage = () => {
 
       <button onClick={loadProjectHandler}>Load Project A</button>
     </div>
-  )
-}
+  );
+};
 
-export default ClientProjectsPage
+export default ClientProjectsPage;

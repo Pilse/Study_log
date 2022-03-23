@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { DUMMY_EVENTS } from '../../types/types';
 
@@ -22,7 +23,7 @@ const EventItem: NextPage<EventItemProps> = ({ item }) => {
 
   return (
     <li>
-      <img src={image} alt={image} />
+      <Image src={image} alt={image} />
       <div>
         <div>
           <h2>{title}</h2>
