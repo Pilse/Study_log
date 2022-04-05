@@ -1,9 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { FormEvent, useRef } from "react";
+import { FormEvent, useRef, useState } from "react";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
+  const [feedbackItems, setFeedbackItems] = useState<
+    { id: string; email: string; text: string }[]
+  >([]);
+
   const emailInputRef = useRef<HTMLInputElement>(null);
   const feedbackInputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -25,6 +29,12 @@ const Home: NextPage = () => {
     const data = await res.json();
     console.log(data);
   };
+
+  async function loadFeedbackHandler() {
+    const res = await fetch("/api/feedback");
+    const data = await res.json();
+    setFeedbackItems(() => data.feedback);
+  }
 
   return (
     <div className={styles.container}>
@@ -50,6 +60,14 @@ const Home: NextPage = () => {
 
           <button>Send Feedback</button>
         </form>
+
+        <button onClick={loadFeedbackHandler}>Load Feedback</button>
+
+        <ul>
+          {feedbackItems.map((item) => (
+            <li key={item.id}>{item.text}</li>
+          ))}
+        </ul>
       </main>
     </div>
   );
