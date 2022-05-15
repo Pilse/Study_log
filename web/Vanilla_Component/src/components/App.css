@@ -1,0 +1,40 @@
+.loader {
+  display: flex;
+  gap: 5px;
+  margin-top: 5px;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  background-color: black;
+  width: 15px;
+  height: 15px;
+  border-radius: 50px;
+}
+
+.circle1 {
+  animation: 0.8s bounce ease-in-out infinite;  
+}
+
+.circle2 {
+  animation: 0.8s 0.1s bounce ease-in-out infinite;  
+}
+
+.circle3 {
+  animation: 0.8s 0.2s bounce ease-in-out infinite;  
+}
+
+@keyframes bounce {
+	0%, 50%, 100% {
+		transform: scale(1);
+	}
+	25% {
+		transform: scale(0.9);
+	}
+	75% {
+		transform: scale(1.3);
+	}
+}

@@ -3,40 +3,57 @@ import Error from "./Error.js";
 import Lists from "./Lists.js";
 
 import useRoute from "../hooks/useRoute.js";
+import store from "../store.js";
+import { compute } from "../../core/observe.js";
 
 class App extends Component {
-  setup() {
-    this.route = useRoute();
-
-    this.state = {
-      items: ["item1", "item2"],
+  initialState() {
+    return {
+      items: ["items1", "items2"],
     };
   }
 
-  template() {
-    return `
-      <template id="template">
-        <div id="app"></div>
-      </template>
-    `;
+  setup() {
+    this.route = useRoute();
   }
 
-  mounted() {
-    this.onRouteChange();
+  render() {
+    // window.addEventListener("popstate", this.onRouteChange.bind(this));
+    // this.onRouteChange();
+    this.error = new Error(document.getElementById("app"), {
+      token: store.state.token,
+    });
+    this.list = new Lists(document.getElementById("app"), {
+      items: this.state.items,
+      onAdd: this.addItems.bind(this),
+    });
 
-    window.addEventListener("popstate", this.onRouteChange.bind(this));
+    compute(() => {
+      this.error.updateProps({
+        token: store.state.token,
+      });
+    });
+
+    compute(() => {
+      this.list.updateProps({
+        items: this.state.items,
+        onAdd: this.addItems.bind(this),
+      });
+    });
   }
 
   updated() {
-    this.onRouteChange();
+    // this.onRouteChange();
+    console.log(this.state.items);
   }
 
   onRouteChange() {
     switch (this.route.path()) {
       case "/":
-        document
-          .querySelector("body")
-          .appendChild(document.getElementById("template").content);
+        this.route.navigate("/list");
+        break;
+
+      case "/list":
         new Lists(document.getElementById("app"), {
           items: this.state.items,
           onAdd: this.addItems.bind(this),
@@ -44,22 +61,17 @@ class App extends Component {
         break;
 
       case "/error":
-        document
-          .querySelector("body")
-          .appendChild(document.getElementById("template").content);
         new Error(document.getElementById("app"), { items: this.state.items });
         break;
 
       default:
-        document
-          .querySelector("body")
-          .appendChild(document.getElementById("template").content);
-        new Error(document.getElementById("app"), { items: this.state.items });
+        this.route.navigate("/list");
         break;
     }
   }
 
   addItems() {
+    console.log("additems");
     this.setState({ items: [...this.state.items, "newitem"] });
   }
 }

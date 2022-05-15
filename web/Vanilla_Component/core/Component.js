@@ -1,43 +1,53 @@
+import { watch } from "./observe.js";
+
 class Component {
   target;
   state;
   props;
+  element;
 
   constructor(target, props) {
     this.target = target;
     this.props = props;
+    this.state = watch(this.initialState());
+
     this.setup();
     this.render();
     this.mounted();
-    this.addEvent();
   }
 
   setup() {}
-
   mounted() {}
-
   updated() {}
+
+  initialState() {
+    return {};
+  }
 
   template() {
     return ``;
   }
 
   render() {
-    this.target.innerHTML = this.template();
+    if (this.element) {
+      this.element.innerHTML = this.template();
+    } else {
+      this.target.innerHTML = this.template();
+    }
+    this.addEvent();
   }
 
-  setState(value) {
-    this.state = { ...this.state, ...value };
-    this.render();
+  setState(newState) {
+    Object.keys(newState).forEach((key) => {
+      this.state[key] = newState[key];
+    });
     this.updated();
   }
 
-  updateProps(value) {
-    this.props = value;
-    this.render();
+  updateProps(newProps) {
+    this.props = newProps;
     this.updated();
   }
-
   addEvent() {}
 }
 
