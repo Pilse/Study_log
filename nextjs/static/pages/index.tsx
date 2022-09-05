@@ -23,6 +23,7 @@ const Home: NextPage<HomeProps> = ({ products }) => {
           </li>
         ))}
       </ul>
+      <Link href="/last-sales">click</Link>
     </div>
   );
 };
