@@ -1,60 +1,44 @@
 #include <iostream>
 #include <vector>
-#include <string.h>
+#include <algorithm>
 
 using namespace std;
 
-int arr[2001];
-int dp[2001][2001];
+vector<int> nums;
+vector<vector<int>> dp;
 
-bool palindrome(int s, int e)
+bool isPalindrome(int s, int e)
 {
-    if (s > e)
-        return 1;
-    if (arr[s] != arr[e])
-    {
-        dp[s][e] = 0;
-        return dp[s][e];
-    }
-
     if (dp[s][e] != -1)
         return dp[s][e];
 
-    dp[s][e] = palindrome(s + 1, e - 1);
+    if (e - s > 1)
+        return dp[s][e] = nums[s] != nums[e] ? 0 : isPalindrome(s + 1, e - 1);
 
-    return dp[s][e];
+    return dp[s][e] = nums[s] == nums[e];
 }
 
 int main()
 {
     ios::sync_with_stdio(false);
-    cin.tie(NULL);
+    cin.tie(0);
 
-    int n, t;
+    int n, m;
 
     cin >> n;
+    nums.resize(n);
 
-    for (int i = 1; i <= n; i++)
-        cin >> arr[i];
+    for_each(nums.begin(), nums.end(), [](int &v)
+             { cin >> v; });
 
-    cin >> t;
+    cin >> m;
+    dp.resize(n, vector<int>(n, -1));
 
-    memset(dp, -1, sizeof(dp));
-
-    for (int i = 0; i < t; i++)
+    while (m--)
     {
-
         int s, e;
         cin >> s >> e;
 
-        int flag = 1;
-
-        if (!palindrome(s, e))
-            flag = 0;
-
-        if (!flag)
-            cout << 0 << '\n';
-        else
-            cout << 1 << '\n';
+        cout << isPalindrome(s - 1, e - 1) << '\n';
     }
 }
