@@ -1,79 +1,76 @@
 #include <iostream>
-#include <queue>
 #include <vector>
-#include <string.h>
-#include <climits>
-#define MAX 8000000
+#include <algorithm>
+#include <queue>
 
 using namespace std;
 
-vector<pair<int, int> > v[801];
-priority_queue<pair<int, int>, vector<pair<int, int> >, greater<pair<int, int> > > pq;
-int n, e;
-int v1, v2;
-int arr[802];
-int e1[802];
-int e2[802];
-
-void dijk(int s, int a[])
-{
-    a[s] = 0;
-    pq.push({0, s});
-    while (!pq.empty())
-    {
-        int dist = pq.top().first;
-        int cur = pq.top().second;
-        pq.pop();
-
-        for (int i = 0; i < v[cur].size(); i++)
-        {
-            int d = v[cur][i].first;
-            int w = v[cur][i].second;
-
-            if (a[w] <= dist + d)
-                continue;
-            a[w] = dist + d;
-            pq.push({a[w], w});
-        }
-    }
-}
+int min_distance(int start, int end, vector<vector<pair<int, int>>> &vec);
 
 int main()
 {
     ios::sync_with_stdio(false);
-    cin.tie(NULL);
+    cin.tie(0);
 
+    int n, e;
     cin >> n >> e;
 
-    int a, b, c;
-    for (int i = 0; i < e; i++)
+    vector<vector<pair<int, int>>> vec(n + 1);
+
+    while (e--)
     {
-        cin >> a >> b >> c;
-        v[a].push_back({c, b});
-        v[b].push_back({c, a});
+        int v1, v2, c;
+        cin >> v1 >> v2 >> c;
+
+        vec[v1].push_back({v2, c});
+        vec[v2].push_back({v1, c});
     }
+
+    int v1, v2;
     cin >> v1 >> v2;
 
-    fill_n(arr, n + 1, MAX);
-    fill_n(e1, n + 1, MAX);
-    fill_n(e2, n + 1, MAX);
+    int dist1 = min_distance(1, v1, vec);
+    int dist2 = min_distance(1, v2, vec);
+    int dist3 = min_distance(v1, v2, vec);
+    int dist4 = min_distance(v1, n, vec);
+    int dist5 = min_distance(v2, n, vec);
 
-    dijk(1, arr);
-    dijk(v1, e1);
-    dijk(v2, e2);
+    if ((dist1 == 1e8 && dist2 == 1e8) || dist3 == 1e8 || (dist4 == 1e8 && dist5 == 1e8))
+    {
+        cout << -1 << '\n';
+        return 0;
+    }
 
-    int toV1 = arr[v1];
-    int toV2 = arr[v2];
-    int v1ToV2 = e1[v2];
-    int result;
+    cout << min(dist1 + dist3 + dist5, dist2 + dist3 + dist4) << '\n';
+}
 
-    if (toV1 == MAX || toV2 == MAX || v1ToV2 == MAX)
-        result = MAX;
-    else
-        result = min(toV1 + v1ToV2 + e2[n], toV2 + v1ToV2 + e1[n]);
+int min_distance(int start, int end, vector<vector<pair<int, int>>> &vec)
+{
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    vector<int> dist(vec.size(), 1e8);
 
-    if (result == MAX)
-        cout << -1;
-    else
-        cout << result << '\n';
+    dist[start] = 0;
+    pq.push({0, start});
+
+    while (!pq.empty())
+    {
+        int cur_cost = pq.top().first;
+        int cur_pos = pq.top().second;
+
+        pq.pop();
+
+        for (int i = 0; i < vec[cur_pos].size(); i++)
+        {
+            int next_pos = vec[cur_pos][i].first;
+            int next_cost = vec[cur_pos][i].second;
+
+            if (dist[next_pos] > cur_cost + next_cost)
+            {
+                dist[next_pos] = cur_cost + next_cost;
+                pq.push({dist[next_pos], next_pos});
+            }
+        }
+    }
+
+    return dist[end];
 }
