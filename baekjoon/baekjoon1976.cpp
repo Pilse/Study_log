@@ -1,8 +1,11 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
-int map[201][201];
+void union_nodes(int x, int y, vector<int> &parent);
+int find_node(int x, vector<int> &parent);
 
 int main()
 {
@@ -10,61 +13,66 @@ int main()
     cin.tie(0);
 
     int n, m;
-    int a, b;
     cin >> n >> m;
 
-    for (int i = 1; i <= n; i++)
+    if (m == 0)
     {
-        for (int j = 1; j <= n; j++)
-        {
-            cin >> map[i][j];
-
-            if (map[i][j] == 1)
-                map[j][i] = 1;
-
-            if (i == j)
-                map[i][j] = 1;
-        }
-    }
-
-    if (m == 1 || m == 0)
-    {
-        cout << "YES";
+        cout << "YES" << '\n';
         return 0;
     }
 
-    for (int k = 1; k <= n; k++)
+    vector<int> parent(n);
+
+    for (int i = 0; i < n; i++)
+        parent[i] = i;
+
+    for (int i = 0; i < n; i++)
     {
-        for (int i = 1; i <= n; i++)
+        for (int j = 0; j < n; j++)
         {
-            for (int j = 1; j <= n; j++)
-            {
-                if (map[i][k] == 1 && map[k][j] == 1)
-                {
-                    map[i][j] = 1;
-                }
-            }
+            int v;
+            cin >> v;
+
+            if (i < j && v)
+                union_nodes(i, j, parent);
         }
     }
 
-    for (int i = 1; i <= m; i++)
+    vector<int> plans(m);
+    for_each(plans.begin(), plans.end(), [](int &v)
+             { cin >> v; });
+
+    int base = find_node(plans[0] - 1, parent);
+
+    for (int city : plans)
     {
-        cin >> b;
-        if (i == 1)
+        if (find_node(city - 1, parent) != base)
         {
-            a = b;
-            continue;
-        }
-        else
-        {
-            if (map[a][b] == 0)
-            {
-                cout << "NO" << '\n';
-                return 0;
-            }
-            a = b;
+            cout << "NO" << '\n';
+            return 0;
         }
     }
+
     cout << "YES" << '\n';
-    return 0;
+}
+
+void union_nodes(int x, int y, vector<int> &parent)
+{
+    int px = find_node(x, parent);
+    int py = find_node(y, parent);
+
+    if (px == py)
+        return;
+
+    if (px > py)
+        swap(px, py);
+    parent[py] = px;
+}
+
+int find_node(int x, vector<int> &parent)
+{
+    if (x == parent[x])
+        return x;
+
+    return parent[x] = find_node(parent[x], parent);
 }
