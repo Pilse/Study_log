@@ -14,8 +14,8 @@ bool compare(pair<int, double> &a, pair<int, double> &b)
 
 vector<int> solution(int N, vector<int> stages)
 {
-  vector<pair<int, int> > players(N + 2);
-  vector<pair<int, double> > failure;
+  vector<pair<int, int>> players(N + 2);
+  vector<pair<int, double>> failure;
   vector<int> answer;
 
   for (int i = 0; i < stages.size(); i++)

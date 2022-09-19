@@ -16,7 +16,7 @@ struct rectangle
   rectangle() : minr(51), minc(51), maxr(-1), maxc(-1) {}
 };
 
-void fill_black(vector<vector<int> > &board)
+void fill_black(vector<vector<int>> &board)
 {
   int row = board.size();
   int column = board[0].size();
@@ -32,7 +32,7 @@ void fill_black(vector<vector<int> > &board)
   }
 }
 
-rectangle get_rectangle(vector<vector<int> > board, int r, int c)
+rectangle get_rectangle(vector<vector<int>> board, int r, int c)
 {
   int row = board.size();
   int column = board[0].size();
@@ -44,7 +44,7 @@ rectangle get_rectangle(vector<vector<int> > board, int r, int c)
 
   memset(visited, 0, sizeof(visited));
 
-  queue<pair<int, int> > q;
+  queue<pair<int, int>> q;
   q.push({r, c});
   pos.minr = r;
   pos.maxr = r;
@@ -80,7 +80,7 @@ rectangle get_rectangle(vector<vector<int> > board, int r, int c)
   return pos;
 }
 
-bool check_filled(vector<vector<int> > board, rectangle pos, int base)
+bool check_filled(vector<vector<int>> board, rectangle pos, int base)
 {
   for (int r = pos.minr; r <= pos.maxr; r++)
   {
@@ -93,7 +93,7 @@ bool check_filled(vector<vector<int> > board, rectangle pos, int base)
   return true;
 }
 
-void remove_rectangle(vector<vector<int> > &board, rectangle pos)
+void remove_rectangle(vector<vector<int>> &board, rectangle pos)
 {
   for (int r = pos.minr; r <= pos.maxr; r++)
   {
@@ -104,7 +104,7 @@ void remove_rectangle(vector<vector<int> > &board, rectangle pos)
   }
 }
 
-int solution(vector<vector<int> > board)
+int solution(vector<vector<int>> board)
 {
   int score = 0;
   bool game_continue = true;
