@@ -1,0 +1,56 @@
+#include <string>
+#include <queue>
+#include <vector>
+
+using namespace std;
+
+void dijkstra(int s, vector<vector<pair<int, int>>> &map, vector<int> &dist)
+{
+  dist[s] = 0;
+  priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq;
+
+  pq.push({0, s});
+
+  while (!pq.empty())
+  {
+    auto [cur_cost, cur_pos] = pq.top();
+    pq.pop();
+
+    if (cur_cost > dist[cur_pos])
+      continue;
+
+    for (auto next : map[cur_pos])
+    {
+      auto [next_pos, next_cost] = next;
+
+      if (dist[next_pos] > cur_cost + next_cost)
+      {
+        dist[next_pos] = cur_cost + next_cost;
+        pq.push({dist[next_pos], next_pos});
+      }
+    }
+  }
+}
+
+int solution(int n, int s, int a, int b, vector<vector<int>> fares)
+{
+  vector<vector<int>> dist(n + 1, vector<int>(n + 1, 1e8));
+  vector<vector<pair<int, int>>> map(n + 1);
+
+  for (auto fare : fares)
+  {
+    map[fare[0]].push_back({fare[1], fare[2]});
+    map[fare[1]].push_back({fare[0], fare[2]});
+  }
+
+  dijkstra(s, map, dist[s]);
+  dijkstra(a, map, dist[a]);
+  dijkstra(b, map, dist[b]);
+
+  int min_cost = 1e8;
+
+  for (int i = 1; i <= n; i++)
+    min_cost = min(min_cost, dist[s][i] + dist[a][i] + dist[b][i]);
+
+  return min_cost;
+}
