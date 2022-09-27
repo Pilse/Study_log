@@ -2,16 +2,19 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import EventList from "../../components/events/event-list";
 import EventsSearch from "../../components/events/events-search";
+import { useQuery } from "react-query";
 import { getAllEvents } from "../../dummy-data";
 
 const Events: NextPage = () => {
-  const events = getAllEvents();
+  const { data: events } = useQuery("allEvents", getAllEvents);
   const router = useRouter();
 
   const findEventsHandler = (year: string, month: string) => {
     const fullPath = `/events/${year}/${month}`;
     router.push(fullPath);
   };
+
+  if (!events) return <div>loading</div>;
 
   return (
     <div>

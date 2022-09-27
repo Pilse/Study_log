@@ -41,12 +41,22 @@ const DUMMY_EVENTS = [
   },
 ];
 
-export function getFeaturedEvents(): DummyEvent[] {
-  return DUMMY_EVENTS.filter((event) => event.isFeatured);
+export async function getFeaturedEvents(): Promise<DummyEvent[]> {
+  const events = await getAllEvents();
+  return events.filter((event) => event.isFeatured);
 }
 
-export function getAllEvents(): DummyEvent[] {
-  return DUMMY_EVENTS;
+export async function getAllEvents(): Promise<DummyEvent[]> {
+  const res = await fetch(
+    "https://nextjs-89961-default-rtdb.firebaseio.com/events.json"
+  );
+  const data = await res.json();
+  const events = Object.keys(data).map((key: string) => ({
+    id: key,
+    ...data[key],
+  })) as DummyEvent[];
+
+  return events;
 }
 
 export function getFilteredEvents(dateFilter: {
@@ -65,6 +75,9 @@ export function getFilteredEvents(dateFilter: {
   return filteredEvents;
 }
 
-export function getEventById(id: string): DummyEvent | undefined {
-  return DUMMY_EVENTS.find((event) => event.id === id);
+export async function getEventById(
+  id: string
+): Promise<DummyEvent | undefined> {
+  const events = await getAllEvents();
+  return events.find((event) => event.id === id);
 }
