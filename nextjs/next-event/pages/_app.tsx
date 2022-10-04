@@ -2,7 +2,6 @@ import "../styles/globals.css";
 import Layout from "../components/layout/layout";
 import type { AppProps } from "next/app";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
-import { useState } from "react";
 
 const client = new QueryClient();
 

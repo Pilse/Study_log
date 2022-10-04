@@ -4,6 +4,7 @@ import type {
   GetStaticProps,
   GetStaticPaths,
 } from "next";
+import Head from "next/head";
 import EventSummary from "../../components/event-detail/event-summary";
 import EventLogistics from "../../components/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-content";
@@ -25,6 +26,9 @@ const EventDetails: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <title>{event.title}</title>
+      </Head>
       <EventSummary title={event.title} />
       <EventLogistics
         date={event.date}
