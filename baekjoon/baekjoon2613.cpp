@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <queue>
 
 using namespace std;
 
@@ -9,13 +8,12 @@ int main()
   ios::sync_with_stdio(false);
   cin.tie(0);
 
-  int n, m;
+  int n, m, l = 0, r = 0;
   cin >> n >> m;
 
   vector<int> marvels(n);
-  vector<int> baskets[m];
+  vector<int> baskets(m);
 
-  int l = 0, r = 0;
   for (auto &m : marvels)
   {
     cin >> m;
@@ -23,8 +21,9 @@ int main()
     r += m;
   }
 
-  int answer = 999;
-  int acnt = 0;
+  int ans_sum = 0;
+  int ans_cnt = 0;
+
   while (l <= r)
   {
     int mid = (l + r) / 2;
@@ -33,20 +32,20 @@ int main()
 
     for (auto marvel : marvels)
     {
-      sum += marvel;
-
-      if (sum > mid)
+      if (sum + marvel <= mid)
       {
-        cnt++;
-        sum = marvel;
+        sum += marvel;
+        continue;
       }
+
+      sum = marvel;
+      cnt++;
     }
 
     if (cnt <= m)
     {
-      if (mid < answer)
-        answer = mid;
-      acnt = cnt;
+      ans_sum = mid;
+      ans_cnt = cnt;
       r = mid - 1;
       continue;
     }
@@ -54,39 +53,41 @@ int main()
     l = mid + 1;
   }
 
-  cout << answer << '\n';
+  cout << ans_sum << '\n';
 
   int sum = 0;
   int cnt = 0;
-  int diff = m - acnt;
-
+  int diff = m - ans_cnt;
   for (auto marvel : marvels)
   {
-    sum += marvel;
-    cnt++;
-
-    if (sum > answer)
+    if (sum + marvel <= ans_sum)
     {
-      if (cnt - 1 > 1 && diff)
-      {
-        while (cnt - 1 > 1 && diff)
-        {
-          cout << 1 << " ";
-          cnt--;
-          diff--;
-        }
-        cout << cnt - 1 << " ";
-
-        sum = marvel;
-        cnt = 1;
-
-        continue;
-      }
-
-      cout << cnt - 1 << " ";
-      sum = marvel;
-      cnt = 1;
+      sum += marvel;
+      cnt++;
+      continue;
     }
+
+    while (cnt > 1 && diff)
+    {
+      cout << 1 << " ";
+      cnt--;
+      diff--;
+    }
+
+    if (cnt == 0)
+      cout << 1 << " ";
+    else
+      cout << cnt << " ";
+    cnt = 1;
+    sum = marvel;
   }
-  cout << cnt << '\n';
+
+  while (cnt > 1 && diff)
+  {
+    cout << 1 << " ";
+    cnt--;
+    diff--;
+  }
+
+  cout << cnt << " ";
 }
