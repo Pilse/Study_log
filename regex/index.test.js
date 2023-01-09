@@ -252,3 +252,57 @@ describe("named group", () => {
     expect("cute_kittens.pdf".match(regex).groups.extension).toEqual("pdf");
   });
 });
+
+describe("replace", () => {
+  test("동물이름을 cute로 replace할 수 있다", () => {
+    const regex = /kitten|puppy|piglet|foal|chick/g;
+    const originText =
+      "I brought home a kitten and a puppy yesterday. Then I went to the petting zoo and saw a piglet, a foal and a chick";
+    const expectText =
+      "I brought home a cute and a cute yesterday. Then I went to the petting zoo and saw a cute, a cute and a cute";
+    expect(originText.replace(regex, "cute")).toEqual(expectText);
+  });
+
+  test("그룹을 지정하여 대체 할 수 있다", () => {
+    const regex = /a (kitten|puppy|piglet|foal|chick)/g;
+    const originText =
+      "I brought home a kitten and a puppy yesterday. Then I went to the petting zoo and saw a piglet, a foal and a chick";
+    const expectedText =
+      "I brought home the cutest kitten and the cutest puppy yesterday. Then I went to the petting zoo and saw the cutest piglet, the cutest foal and the cutest chick";
+    expect(originText.replace(regex, "the cutest $1")).toEqual(expectedText);
+  });
+
+  test("*_' '를 문장에서 제거할 수 있다", () => {
+    const regex = /[*_" "]/g;
+    const originText = "Now _this_ is a *workout* for your brain!";
+    const expectedText = "Nowthisisaworkoutforyourbrain!";
+    expect(originText.replace(regex, "")).toEqual(expectedText);
+  });
+
+  test("이메일을 가릴 수 있다.", () => {
+    const regex = /^(\w+\.?)+@(\w+\.)+\w+$/gm;
+    expect("gogosky1175@gmail.com".replace(regex, "<<redacted>>")).toEqual("<<redacted>>");
+    expect("gogosky1175.office@uos.ac.kr".replace(regex, "<<redacted>>")).toEqual("<<redacted>>");
+  });
+
+  test("html 태그를 제거할 수 있다,", () => {
+    const regex = /<(\w+)>(.*)<\/\1>/;
+    expect("<div>hello world</div>".replace(regex, "$2")).toEqual("hello world");
+    expect("<b>bold statement</b>".replace(regex, "$2")).toEqual("bold statement");
+  });
+
+  test("앞 뒤 공백을 제거할 수 있다", () => {
+    const regex = /^\s+(.*?)\s+$/;
+    expect("  this is a string    ".replace(regex, "$1")).toEqual("this is a string");
+  });
+
+  test("firstname과 lastname의 위치를 바꿀 수 있다", () => {
+    const regex = /^\b([\w\-']+)\b\s+([\w\-']+)$/gim;
+    expect("Indira Ghandi".replace(regex, "$2, $1")).toEqual("Ghandi, Indira");
+  });
+
+  test("firstname, middlename, lastname을 구분할 수 있다", () => {
+    const regex = /^((?:[\w\-']+\s+)*)([\w\-']+)$/gim;
+    expect("Harriet Beecher Stowe".replace(regex, "$2, $1")).toEqual("Stowe, Harriet Beecher ");
+  });
+});
