@@ -306,3 +306,24 @@ describe("replace", () => {
     expect("Harriet Beecher Stowe".replace(regex, "$2, $1")).toEqual("Stowe, Harriet Beecher ");
   });
 });
+
+describe("look around", () => {
+  test("git 명령어만 추출할 수 있다", () => {
+    const regex = /(?<=^(?:[\w\- ]+ git:\([\w\- ]+\) \$ )).+$/gm;
+    expect("python git:(master) $ cd ~".match(regex)[0]).toEqual("cd ~");
+  });
+
+  test("meta__ 다음 문자열 만 추출할 수 있다", () => {
+    const regex = /(?<=\bmeta__)\w+\b/gm;
+    expect("a_tag, meta__another_tag, meta__third_tag, fourth_tag".match(regex)).toHaveLength(2);
+    expect("a_tag, meta__another_tag, meta__third_tag, fourth_tag".match(regex)[0]).toEqual("another_tag");
+    expect("a_tag, meta__another_tag, meta__third_tag, fourth_tag".match(regex)[1]).toEqual("third_tag");
+  });
+
+  test("파일 이름에 py를 가지고 .py 확장자를 가지지 않는 파일명을 추출할 수 있다", () => {
+    const regex = /.*py.*(?<!py)$/;
+    expect("happy.js".match(regex)[0]).toEqual("happy.js");
+    expect("happy.py".match(regex)).toBeFalsy();
+    expect("hello.js".match(regex)).toBeFalsy();
+  });
+});
